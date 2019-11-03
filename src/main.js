@@ -3,6 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
+import axios from 'axios';
+
+const token = localStorage.getItem('user-token')
+
+if (token) {
+    axios.defaults.headers.common['Authorization'] = `JWT ${token}`
+}
 
 Vue.config.productionTip = false
 

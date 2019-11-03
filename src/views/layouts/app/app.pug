@@ -5,6 +5,7 @@ main
         width="320px"
         temporary
         app
+        v-if='$store.getters.isAuthenticated'
     )
         v-list-item
             v-list-item-content
@@ -21,8 +22,8 @@ main
         v-app-bar-nav-icon(@click.stop="drawer = !drawer")
         v-toolbar-title.d-none.d-sm-flex.text-center.app-bar-title Pizza panel
         .actions
-            v-switch(class='switch-theme')
-            v-btn(color='accent').exit-btn
+            v-switch(class='switch-theme' v-model='$vuetify.theme.dark')
+            v-btn(v-if='$store.getters.isAuthenticated' @click='logout()' color='accent').exit-btn
                 v-icon mdi-exit-to-app
     v-content
         v-container.pt-5

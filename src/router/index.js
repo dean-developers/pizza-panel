@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import {isAuth, isNotAuth } from './guard';
 
 Vue.use(VueRouter)
 
@@ -11,8 +12,14 @@ const routes = [
         children: [
             {
                 path: '/login',
-                beforeEnter: '',
+                beforeEnter: isNotAuth,
                 component: () => import('@/views/pages/Login'),
+                meta: {}
+            },
+            {
+                path: '/receive-orders',
+                beforeEnter: isAuth,
+                component: () => import('@/views/pages/Orders'),
                 meta: {}
             }
         ]

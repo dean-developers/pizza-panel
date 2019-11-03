@@ -1,6 +1,7 @@
 import { AUTH_REQUEST, AUTH_ERROR, AUTH_SUCCESS, AUTH_LOGOUT } from '../actions/auth'
 import { USER_REQUEST } from '../actions/user'
-import http from '../../http'
+import http from '@/http'
+import router from '@/router';
 
 const state = { token: localStorage.getItem('user-token') || '', status: ''}
 
@@ -14,10 +15,17 @@ const actions = {
         commit(AUTH_REQUEST)
         await http({ url: 'login', method: 'POST', data: user })
             .then(res => {
-                localStorage.setItem('user-token', res.data.jwt)
-                commit(AUTH_SUCCESS, res)
-                dispatch(USER_REQUEST)
+                if (res && res.data && res.data.jwt) {
+                    const token = res.data.jwt
 
+                    localStorage.setItem('user-token', token)
+                    http.defaults.headers.common['Authorization'] = `JWT ${token}`
+
+                    commit(AUTH_SUCCESS, res.data)
+                    dispatch(USER_REQUEST)
+
+                    router.push('/receive-orders');
+                }
             }).catch(error => {
                 commit(AUTH_ERROR, error)
                 localStorage.removeItem('user-token')
@@ -26,6 +34,7 @@ const actions = {
     [AUTH_LOGOUT]: ({commit}) => {
         commit(AUTH_LOGOUT)
         localStorage.removeItem('user-token')
+        delete http.defaults.headers.common['Authorization']
     }
 }
 
@@ -33,9 +42,9 @@ const mutations = {
     [AUTH_REQUEST]: (state) => {
         state.status = 'loading'
     },
-    [AUTH_SUCCESS]: (state, resp) => {
+    [AUTH_SUCCESS]: (state, response) => {
         state.status = 'success'
-        state.token = resp.token
+        state.token = response.jwt
     },
     [AUTH_ERROR]: (state) => {
         state.status = 'error'

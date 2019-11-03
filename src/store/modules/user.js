@@ -12,12 +12,11 @@ const getters = {
 }
 
 const actions = {
-    [USER_REQUEST]: async ({state, commit, dispatch}) => {
-        console.log(state.token);
+    [USER_REQUEST]: async ( { commit, dispatch } ) => {
         commit(USER_REQUEST)
-        await http({url: '/user'})
-            .then(resp => {
-                commit(USER_SUCCESS, resp)
+        await http( {url: '/user'} )
+            .then(res => {
+                commit(USER_SUCCESS, res)
             })
             .catch(res => {
                 console.log(res);
@@ -31,9 +30,9 @@ const mutations = {
     [USER_REQUEST]: (state) => {
         state.status = 'loading'
     },
-    [USER_SUCCESS]: (state, resp) => {
+    [USER_SUCCESS]: (state, res) => {
         state.status = 'success'
-        Vue.set(state, 'profile', resp)
+        Vue.set(state, 'profile', res)
     },
     [USER_ERROR]: (state) => {
         state.status = 'error'

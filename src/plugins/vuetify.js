@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuetify, { VAppBar, VList, VListItem, VListItemTitle,
     VListItemContent, VListItemAction, VAppBarNavIcon,
-    VToolbarTitle, VContent, VContainer, VSwitch, VBtn } from 'vuetify/lib';
+    VToolbarTitle, VContent, VContainer, VSwitch, VBtn ,
+    } from 'vuetify/lib';
 import locales from '../locales';
 
 import '@mdi/font/css/materialdesignicons.css';
