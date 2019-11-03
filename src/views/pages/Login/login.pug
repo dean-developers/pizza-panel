@@ -1,0 +1,23 @@
+main
+    .form-container
+        v-card.auth
+            v-toolbar(color='blue darken-1')
+                v-toolbar-title {{$vuetify.lang.t(`$vuetify.loginForm.title`)}}
+            v-card-text
+                v-form
+                    v-text-field(:label='$vuetify.lang.t(`$vuetify.loginForm.login`)',
+                        name='login',
+                        prepend-icon='mdi-account',
+                        type='text',
+                        v-model='$v.login.$model') {{$vuetify.lang.t(`$vuetify.loginForm.login`)}}
+                    p.error(v-if='!$v.login.required') {{$vuetify.lang.t(`$vuetify.validations.required`)}}
+                    v-text-field#password(:label='$vuetify.lang.t(`$vuetify.loginForm.password`)',
+                        name='password',
+                        prepend-icon='mdi-lock',
+                        type='password',
+                        v-model='$v.password.$model') {{$vuetify.lang.t(`$vuetify.loginForm.password`)}}
+                    p.error(v-if='!$v.password.required') {{$vuetify.lang.t(`$vuetify.validations.required`)}}
+
+            v-card-actions
+                v-spacer
+                v-btn(@click='submit()' color='primary') {{$vuetify.lang.t(`$vuetify.loginForm.signIn`)}}

@@ -1,0 +1,29 @@
+.v-toolbar__title {
+    margin: 0 auto;
+    color: white;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-title {
+    font-size: 33px !important;
+}
+
+.v-input__slot {
+    margin-right: 15px;
+    margin-bottom: 0!important;
+}
+
+.form-container {
+    margin-top: 100px;
+}
+
+.switch-theme .v-messages {
+    display: none!important;
+}
+
+
