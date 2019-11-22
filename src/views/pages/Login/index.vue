@@ -8,21 +8,18 @@ import { required } from 'vuelidate/lib/validators'
 
 export default {
     mixins: [validationMixin, validate],
-    data: () => ({
-        login: '',
-        password: ''
-    }),
     validations: {
         login: {
             required
         },
         password: {
-            required
+            required,
         }
     },
-    created: () => {
-        console.log(this.$vuetify.lang.t(`$vuetify.pages.Login.emailText`).replace(':email', this.email));
-    },
+    data: () => ({
+        login: '',
+        password: ''
+    }),
     methods: {
         submit() {
             if (this.$v.$invalid) {

@@ -5,18 +5,18 @@ export default {
         uk: 'Ukrainian'
     },
     validate: {
-        Login: {
+        Auth: {
             login: {
                 required: 'Fill an login'
             },
             password: {
-                required: 'Fill and password'
+                required: 'Fill an password'
             }
 
         },
     },
     pages: {
-        Login: {
+        Auth: {
             form: {
                 title: 'System login',
                 login: 'Login',
@@ -30,6 +30,7 @@ export default {
         receiveOrders: 'Receive orders',
         settings: 'Settings'
     },
+
     messages: {
         error: {
             incorrectEmailOrPassword: 'Email or password incorrect',

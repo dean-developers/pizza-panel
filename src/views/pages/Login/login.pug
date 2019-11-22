@@ -3,32 +3,35 @@ main.auth
         .auth-wrapper
             v-card.elevation-12.login
                 v-toolbar(color="blue darken-1")
-                    v-toolbar-title {{$vuetify.lang.t(`$vuetify.pages.Login.form.title`)}}
+                    v-toolbar-title {{$vuetify.lang.t(`$vuetify.pages.Auth.form.title`)}}
                 v-card-text
                     v-form(@submit.prevent="submit()")
                         v-text-field(
-                            :label="$vuetify.lang.t(`$vuetify.pages.Login.form.login`)"
+                            :label="$vuetify.lang.t(`$vuetify.pages.Auth.form.login`)"
                             name="login"
                             prepend-icon="mdi-account"
                             type="text"
                             v-model="login"
-                            :error-messages="getValidateMessage('Login', 'login', 'login')"
+                            :error-messages="getValidateMessage('Auth', 'login')"
                             required
                         )
 
                         v-text-field#password(
-                            :label="$vuetify.lang.t(`$vuetify.pages.Login.form.password`)"
+                            :label="$vuetify.lang.t(`$vuetify.pages.Auth.form.password`)"
                             name="password"
                             prepend-icon="mdi-lock"
                             type="password"
                             v-model="password"
-                            :error-messages="getValidateMessage('Login', 'password')"
+                            :error-messages="getValidateMessage('Auth', 'login')"
                             required
                         )
 
-                v-card-actions
-                    v-spacer
-                    v-btn(
-                        type="submit"
-                        color="primary"
-                    ) {{$vuetify.lang.t(`$vuetify.pages.Login.form.signIn`)}}
+                        v-spacer
+
+                        v-btn(
+                            type="submit"
+                            color="primary"
+                        ) {{$vuetify.lang.t(`$vuetify.pages.Auth.form.signIn`)}}
+
+
+

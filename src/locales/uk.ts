@@ -5,7 +5,7 @@ export default {
         uk: 'Українська'
     },
     validate: {
-        Login: {
+        Auth: {
             login: {
                 required: 'Введіть логін'
             },
@@ -16,7 +16,7 @@ export default {
         },
     },
     pages: {
-      Login: {
+      Auth: {
           form: {
               title: 'Вхід в систему',
               login: 'Логін',
