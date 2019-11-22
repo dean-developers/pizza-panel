@@ -1,15 +1,41 @@
 export default {
-    validations: {
-        required: 'This field can\'t be empty',
+    locales: {
+        en: 'English',
+        ru: 'Russian',
+        uk: 'Ukrainian'
     },
-    loginForm: {
-        title: 'System login',
-        login: 'Login',
-        password: 'Password',
-        signIn: 'Login',
+    validate: {
+        Login: {
+            login: {
+                required: 'Fill an login'
+            },
+            password: {
+                required: 'Fill and password'
+            }
+
+        },
     },
+    pages: {
+        Login: {
+            form: {
+                title: 'System login',
+                login: 'Login',
+                password: 'Password',
+                signIn: 'Login',
+            },
+        }
+    },
+
     menu: {
         receiveOrders: 'Receive orders',
         settings: 'Settings'
+    },
+    messages: {
+        error: {
+            incorrectEmailOrPassword: 'Email or password incorrect',
+        },
+        success: {
+            login: 'Success login'
+        }
     }
 };

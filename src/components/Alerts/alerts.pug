@@ -1,0 +1,10 @@
+.errors
+    transition-group(name="slide-fade")
+        v-alert(
+            v-for="item in items"
+            :key="item.id"
+            :type="item.type"
+            v-model="item.show"
+            dismissible
+            outlined
+        ) {{ item.locale ? $vuetify.lang.t(`$vuetify.messages.${item.type}.${item.message}`) : item.message }}

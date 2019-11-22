@@ -22,7 +22,7 @@ export default new Vuetify({
     },
     lang: {
         locales,
-        current: 'ru'
+        current: Object.keys(locales).includes(localStorage.getItem('locale')) ? localStorage.getItem('locale') : 'ru'
     },
     theme: {
         options: {

@@ -1,24 +1,22 @@
-import axios from 'axios';
-import router from '@/router';
-import store from '@/store';
-import App from '@/main.js';
+import axios from 'axios'
+import store from '@/store'
 
-console.log(process.env);
 const http = axios.create({
     baseURL: process.env.VUE_APP_SERVER,
     timeout: 5000
-});
+})
 
-http.interceptors.response.use(
-    res => Promise.resolve(res),
-    error => {
-        if (error.response && error.response.status === 401 && !['/', '/login'].includes(App.$route.path)) {
-            store.commit('SET_USER', null);
-            router.push('/login');
+http.interceptors.request.use(
+    config => {
+        if (store.getters.token) {
+            config.headers = Object.assign({}, config.headers, {
+                'Authorization': `JWT ${store.getters.token}`
+            })
         }
 
-        return Promise.reject(error);
-    }
-);
+        return config
+    },
+    error => Promise.reject(error)
+)
 
-export default http;
+export default http

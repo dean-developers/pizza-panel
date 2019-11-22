@@ -2,16 +2,19 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import vuetify from './plugins/vuetify';
-import axios from 'axios';
+import vuetify from './plugins/vuetify'
+import Vuelidate from 'vuelidate'
 
-const token = localStorage.getItem('user-token')
+import alerts from './components/Alerts/alerts'
+import Locale from './components/Locale/locale'
 
-if (token) {
-    axios.defaults.headers.common['Authorization'] = `JWT ${token}`
-}
 
 Vue.config.productionTip = false
+
+Vue.use(Vuelidate)
+
+Vue.component('v-locale', Locale)
+Vue.component('alerts', alerts)
 
 new Vue({
     vuetify,

@@ -1,11 +1,9 @@
-main
+v-app(id="inspire")
     v-navigation-drawer(
         v-model="drawer"
-        absolute
-        width="320px"
         temporary
+        clipped
         app
-        v-if='$store.getters.isAuthenticated'
     )
         v-list-item
             v-list-item-content

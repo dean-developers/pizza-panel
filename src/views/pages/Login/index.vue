@@ -2,37 +2,38 @@
 <style src="./login.scss" lang="scss" scoped></style>
 
 <script>
-    import { validationMixin } from 'vuelidate';
-    import { required } from 'vuelidate/lib/validators'
-    import {AUTH_REQUEST} from '@/store/actions/auth'
+import { validationMixin } from 'vuelidate';
+import validate from '@/mixins/validate'
+import { required } from 'vuelidate/lib/validators'
 
-    export default {
-        mixins: [validationMixin],
-        validations: {
-            login: {
-                required,
-            },
-            password: {
-                required,
-            }
+export default {
+    mixins: [validationMixin, validate],
+    data: () => ({
+        login: '',
+        password: ''
+    }),
+    validations: {
+        login: {
+            required
         },
-
-        data: () => ({
-            login: '',
-            password: ''
-        }),
-
-        methods: {
-            submit() {
-                if (this.$v.$invalid) {
-                    this.$v.$touch();
-                } else {
-                    this.$store.dispatch(AUTH_REQUEST, {
-                        login: this.login,
-                        password: this.password
-                    });
-                }
+        password: {
+            required
+        }
+    },
+    created: () => {
+        console.log(this.$vuetify.lang.t(`$vuetify.pages.Login.emailText`).replace(':email', this.email));
+    },
+    methods: {
+        submit() {
+            if (this.$v.$invalid) {
+                this.$v.$touch();
+            } else {
+                this.$store.dispatch('authRequest', {
+                    login: this.login,
+                    password: this.password
+                });
             }
         }
     }
+}
 </script>

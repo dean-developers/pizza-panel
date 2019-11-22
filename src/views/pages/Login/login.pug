@@ -1,23 +1,34 @@
-main
-    .form-container
-        v-card.auth
-            v-toolbar(color='blue darken-1')
-                v-toolbar-title {{$vuetify.lang.t(`$vuetify.loginForm.title`)}}
-            v-card-text
-                v-form
-                    v-text-field(:label='$vuetify.lang.t(`$vuetify.loginForm.login`)',
-                        name='login',
-                        prepend-icon='mdi-account',
-                        type='text',
-                        v-model='$v.login.$model') {{$vuetify.lang.t(`$vuetify.loginForm.login`)}}
-                    p.error(v-if='!$v.login.required') {{$vuetify.lang.t(`$vuetify.validations.required`)}}
-                    v-text-field#password(:label='$vuetify.lang.t(`$vuetify.loginForm.password`)',
-                        name='password',
-                        prepend-icon='mdi-lock',
-                        type='password',
-                        v-model='$v.password.$model') {{$vuetify.lang.t(`$vuetify.loginForm.password`)}}
-                    p.error(v-if='!$v.password.required') {{$vuetify.lang.t(`$vuetify.validations.required`)}}
+main.auth
+    .v-container
+        .auth-wrapper
+            v-card.elevation-12.login
+                v-toolbar(color="blue darken-1")
+                    v-toolbar-title {{$vuetify.lang.t(`$vuetify.pages.Login.form.title`)}}
+                v-card-text
+                    v-form(@submit.prevent="submit()")
+                        v-text-field(
+                            :label="$vuetify.lang.t(`$vuetify.pages.Login.form.login`)"
+                            name="login"
+                            prepend-icon="mdi-account"
+                            type="text"
+                            v-model="login"
+                            :error-messages="getValidateMessage('Login', 'login', 'login')"
+                            required
+                        )
 
-            v-card-actions
-                v-spacer
-                v-btn(@click='submit()' color='primary') {{$vuetify.lang.t(`$vuetify.loginForm.signIn`)}}
+                        v-text-field#password(
+                            :label="$vuetify.lang.t(`$vuetify.pages.Login.form.password`)"
+                            name="password"
+                            prepend-icon="mdi-lock"
+                            type="password"
+                            v-model="password"
+                            :error-messages="getValidateMessage('Login', 'password')"
+                            required
+                        )
+
+                v-card-actions
+                    v-spacer
+                    v-btn(
+                        type="submit"
+                        color="primary"
+                    ) {{$vuetify.lang.t(`$vuetify.pages.Login.form.signIn`)}}

@@ -1,0 +1,11 @@
+v-menu(offset-y)
+    template(v-slot:activator="{ on }")
+        v-btn(v-on="on" color="blue lighten-4") {{currentLang}}
+    v-list
+        v-list-item(
+            v-for="(locale, index) in locales"
+            :key="index"
+            @click="changeLocale(locale)"
+            :class="{'active': locale === currentLang}"
+        )
+            v-list-item-title {{$vuetify.lang.t(`$vuetify.locales.${locale}`)}}
