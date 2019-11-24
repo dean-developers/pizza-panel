@@ -1,6 +1,6 @@
 v-menu(offset-y)
     template(v-slot:activator="{ on }")
-        v-btn(v-on="on" color="blue lighten-4") {{currentLang}}
+        v-btn(v-on="on" color="accent") {{currentLang}}
     v-list
         v-list-item(
             v-for="(locale, index) in locales"

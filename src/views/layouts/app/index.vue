@@ -6,18 +6,35 @@ export default {
     data: () => ({
         drawer: false
     }),
+    created: function() {
+        this.$vuetify.theme.dark = this.theme;
+    },
     methods: {
         logout() {
             this.$store.dispatch('logout').then(() => this.$router.push('/login'));
         }
     },
     computed: {
+        theme: {
+            get() {
+                return JSON.parse(this.$store.state.app.isDark);
+            },
+            set(val) {
+                this.$vuetify.theme.dark = val;
+                this.$store.commit('TOGGLE_THEME', val);
+            }
+        },
         menu() {
             return [
                 {
-                    name: 'receiveOrders',
+                    name: 'orders',
                     icon: 'mdi-account-clock',
-                    to: '/receive-orders'
+                    to: '/orders'
+                },
+                {
+                    name: 'users',
+                    icon: 'mdi-account',
+                    to: '/users'
                 },
                 {
                     name: 'settings',
@@ -26,6 +43,9 @@ export default {
                 },
 
             ]
+        },
+        routeName() {
+            return this.$route.name
         }
     }
 }

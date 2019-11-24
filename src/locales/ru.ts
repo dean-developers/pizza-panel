@@ -27,12 +27,13 @@ export default {
     },
 
     menu: {
-        receiveOrders: 'Приём заказов',
+        orders: 'Заказы',
+        users: 'Пользователи',
         settings: 'Настройки'
     },
     messages: {
         error: {
-            incorrectEmailOrPassword: 'Неверный email или пароль',
+            incorrectLoginOrPassword: 'Неверный email или пароль',
         },
         success: {
             login: 'Успешный вход'

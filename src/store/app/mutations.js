@@ -18,12 +18,12 @@ export default {
 
     SET_TOKEN: (state, token) => {
         state.token = token
-        localStorage.setItem('token', token)
+        localStorage.setItem('user-token', token)
     },
 
     REMOVE_TOKEN: (state) => {
         state.token = null
-        localStorage.removeItem('token')
+        localStorage.removeItem('user-token')
     },
 
     ADD_MESSAGE: (state, message) => {
@@ -37,6 +37,11 @@ export default {
 
     REMOVE_MESSAGE: (state, messageId) => {
         state.messages = state.messages.filter(message => message.id !== messageId)
+    },
+
+    TOGGLE_THEME: (state, isDark) => {
+        localStorage.setItem('theme', isDark)
+        state.isDark = isDark
     },
 
 }

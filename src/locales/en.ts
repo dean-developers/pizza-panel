@@ -27,13 +27,14 @@ export default {
     },
 
     menu: {
-        receiveOrders: 'Receive orders',
+        orders: 'Orders',
+        users: 'Users',
         settings: 'Settings'
     },
 
     messages: {
         error: {
-            incorrectEmailOrPassword: 'Email or password incorrect',
+            incorrectLoginOrPassword: 'Email or password incorrect',
         },
         success: {
             login: 'Success login'

@@ -16,12 +16,13 @@ v-app(id="inspire")
                 v-list-item-content
                     v-list-item-title {{$vuetify.lang.t(`$vuetify.menu.${item.name}`)}}
 
-    v-app-bar(color='blue darken-1')
+    v-app-bar(color="primary")
         v-app-bar-nav-icon(@click.stop="drawer = !drawer")
-        v-toolbar-title.d-none.d-sm-flex.text-center.app-bar-title Pizza panel
+        v-toolbar-title.d-none.d-sm-flex.text-center.app-bar-title {{$vuetify.lang.t(`$vuetify.menu.${routeName}`)}}
         .actions
-            v-switch(class='switch-theme' v-model='$vuetify.theme.dark')
-            v-btn(v-if='$store.getters.isAuthenticated' @click='logout()' color='accent').exit-btn
+            v-switch(class='switch-theme' v-model="theme")
+            v-locale
+            v-btn(v-if="$store.getters.loggedIn" @click="logout()" color="accent").exit-btn
                 v-icon mdi-exit-to-app
     v-content
         v-container.pt-5

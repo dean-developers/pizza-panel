@@ -26,12 +26,13 @@ export default {
       }
     },
     menu: {
-        receiveOrders: 'Прийом замовлень',
+        orders: 'Замовлення',
+        users: 'Користувачі',
         settings: 'Налаштування'
     },
     messages: {
         error: {
-            incorrectEmailOrPassword: 'Невірний логін або пароль',
+            incorrectLoginOrPassword: 'Невірний логін або пароль',
         },
         success: {
             login: 'Успішний вхід'

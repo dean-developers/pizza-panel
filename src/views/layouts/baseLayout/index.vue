@@ -1,2 +1,2 @@
 <template lang="pug" src="./baseLayout.pug"> </template>
-<style lang="scss" scoped src="./baseLayout.scss"> </style>
+<style lang="scss" src="./baseLayout.scss" scoped> </style>

@@ -1,25 +1,50 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import {isAuth, isNotAuth } from './guard';
+import Router from 'vue-router'
 
 import Layout from '@/views/layouts/app'
 import baseLayout from '@/views/layouts/baseLayout'
 
-Vue.use(VueRouter)
+import { isAuth, isNotAuth, getUser } from './guard'
+Vue.use(Router)
 
-const routes = [
+export const constantRouterMap = [
     {
         path: '',
         redirect: '/orders',
-        component: () => Layout,
+        component: Layout,
         children: [
             {
-                path: '/orders',
+                path: 'orders',
+                name: 'orders',
                 beforeEnter: isAuth,
                 component: () => import('@/views/pages/Orders'),
                 meta: {
                     permission: ['admin', 'operator']
                 }
+            },
+            {
+                path: 'users',
+                name: 'users',
+                beforeEnter: isAuth,
+                component: () => import('@/views/pages/Users'),
+                meta: {
+                    permission: ['admin']
+                }
+            },
+            {
+                path: 'settings',
+                name: 'settings',
+                beforeEnter: isAuth,
+                component: () => import('@/views/pages/Settings'),
+                meta: {
+                    permission: ['admin']
+                }
+            },
+            {
+                path: '404',
+                beforeEnter: getUser,
+                component: () => import('@/views/pages/404'),
+                hidden: true
             }
         ]
     },
@@ -33,18 +58,17 @@ const routes = [
                 beforeEnter: isNotAuth,
                 component: () => import('@/views/pages/Login'),
                 meta: {
-                    permission: ['admin', 'operator', 'boss']
+                    permission: ['admin', 'operator']
                 }
             }
+
         ]
     },
     { path: '*', redirect: '/404', hidden: true }
 ]
 
-const router = new VueRouter({
+export default new Router({
     mode: 'history',
     scrollBehavior: () => ({ y: 0 }),
-    routes
+    routes: constantRouterMap
 })
-
-export default router

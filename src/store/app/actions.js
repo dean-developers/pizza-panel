@@ -1,53 +1,55 @@
-import http from '../../http';
-import router from '../../router';
+import http from '@/http';
+import router from '@/router';
 import uniqId from 'uniq-id'
 
 export default {
-    authRequest: async ({commit, dispatch}, user) => {
+    authRequest: async ({ commit, dispatch }, user) => {
         await http({url: 'login', method: 'POST', data: user})
             .then(res => {
-                if (res && res.data && res.data.jwt) {
+                if (res.data) {
                     console.log(res.data)
-                    commit('SET_USER', res.data)
+                    commit('SET_USER', res.data.user)
                     commit('SET_TOKEN', res.data.jwt)
+                    commit('SET_TYPE', res.data.user.type)
                     dispatch('addMessage', {
                         message: 'login',
                         type: 'success',
                         locale: true
                     })
-                    router.push('/receive-orders')
+                    router.push('/')
                 }
-            }).catch(error => {
+            }).catch(() => {
                 commit('REMOVE_TOKEN')
                 dispatch('addMessage', {
-                    message: error.message,
-                    type: 'error',
+                    message: 'incorrectLoginOrPassword',
+                    type: 'ervalror',
                     locale: true
                 })
             })
     },
-    getUser: async ({commit, dispatch}) => {
+    getUser: async ({ commit, dispatch }) => {
         await http({
-            url: '/user'
+            url: '/user',
+            method: 'GET'
         }).then(res => {
             if (res.data) {
-                commit('SET_USER', res)
+                commit('SET_USER', res.data)
             }
         }).catch(error => {
-            dispatch('logout')
+            commit('SET_USER', null)
             dispatch('addMessage', {
-                message: error.data.message,
+                message: error.message,
                 type: 'error',
                 locale: true
             })
         })
     },
 
-    logout: ({commit}) => {
+    logout: ({ commit }) => {
         commit('REMOVE_TOKEN')
     },
 
-    addMessage: ({commit, state}, message) => {
+    addMessage: ({ commit, state }, message) => {
         const alreadyExistMessage = state.messages.find(it => {
             let equal = true
 

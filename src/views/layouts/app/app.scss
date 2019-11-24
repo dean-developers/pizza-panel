@@ -3,6 +3,10 @@
     color: white;
 }
 
+.v-toolbar {
+    flex: unset !important;
+}
+
 .actions {
     display: flex;
     align-items: center;
@@ -18,10 +22,14 @@
     margin-bottom: 0!important;
 }
 
-.form-container {
-    margin-top: 100px;
-}
-
 .switch-theme .v-messages {
     display: none!important;
+}
+
+.content-wrap {
+    height: 56px;
+}
+
+.exit-btn {
+    margin-left: 20px;
 }

@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuetify, { VAppBar, VList, VListItem, VListItemTitle,
     VListItemContent, VListItemAction, VAppBarNavIcon,
-    VToolbarTitle, VContent, VContainer, VSwitch, VBtn ,
+    VToolbarTitle, VContent, VContainer, VSwitch, VBtn,
+    VSpacer, VToolbar, VImg, VIcon
     } from 'vuetify/lib';
 import locales from '../locales';
 
@@ -12,7 +13,7 @@ Vue.use(Vuetify, {
         VAppBar, VList, VListItem, VListItemTitle,
         VListItemContent, VListItemAction, VAppBarNavIcon,
         VToolbarTitle, VContent, VContainer, VSwitch,
-        VBtn
+        VBtn, VSpacer, VToolbar, VImg, VIcon
     }
 });
 
@@ -37,6 +38,9 @@ export default new Vuetify({
                 info: '#2196F3',
                 success: '#4CAF50',
                 warning: '#FFC107'
+            },
+            dark: {
+                primary: '#263238'
             }
         }
     }
