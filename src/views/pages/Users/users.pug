@@ -1,0 +1,9 @@
+.v-container
+    .table-wrap(id="table" ref="table")
+        v-data-table(
+            :headers="headers"
+            :items="users"
+            hide-default-footer
+            :loading = "isTableLoad"
+            class="table"
+        )

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuetify, { VAppBar, VList, VListItem, VListItemTitle,
     VListItemContent, VListItemAction, VAppBarNavIcon,
     VToolbarTitle, VContent, VContainer, VSwitch, VBtn,
-    VSpacer, VToolbar, VImg, VIcon
+    VSpacer, VToolbar, VImg, VIcon, VTextField
     } from 'vuetify/lib';
 import locales from '../locales';
 
@@ -13,7 +13,7 @@ Vue.use(Vuetify, {
         VAppBar, VList, VListItem, VListItemTitle,
         VListItemContent, VListItemAction, VAppBarNavIcon,
         VToolbarTitle, VContent, VContainer, VSwitch,
-        VBtn, VSpacer, VToolbar, VImg, VIcon
+        VBtn, VSpacer, VToolbar, VImg, VIcon, VTextField
     }
 });
 
