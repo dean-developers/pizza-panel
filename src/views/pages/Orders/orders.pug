@@ -1,5 +1,17 @@
-.container
-    v-icon.create-button(x-large) mdi-plus-circle
+main
+    .create-button
+        v-btn.mx-2(fab color="primary")
+            v-icon(@click="createOrder = true" dark large) mdi-plus
     .orders
+        .orders-top
+
+        .orders-middle
+
+        .orders-bottom
+
+    v-map.page-map(:name="orders-map")
+
+
+
 
 

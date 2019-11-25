@@ -4,7 +4,12 @@
 <script>
     export default {
         data: () => ({
-            title: 'Receive orders'
-        })
+            orders: {}
+        }),
+        methods: {
+            test() {
+                console.log('hererere!!')
+            }
+        }
     }
 </script>

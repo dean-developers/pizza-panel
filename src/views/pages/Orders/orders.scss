@@ -2,18 +2,30 @@
     position: absolute;
     right: 20px;
     cursor: pointer;
-
-    &:hover {
-        color: #82B1FF;
-    }
+    z-index: 4;
 }
 
 .orders {
-    max-width: 300px;
-    height: 100vh;
+    z-index: 2;
+    max-width: 380px;
+    height: 100%;
     width: 100%;
-    background: red;
+
     position: absolute;
     left: 0;
     top: 0;
+    box-shadow: 0 1px 10px 0 #000;
+}
+
+.orders-middle {
+    z-index: 3;
+    height: calc(100vh - 135px);
+    width: 100%;
+    padding: 10px 10px 5px 10px;
+    color: #31373d;
+}
+
+::v-deep .page-map {
+    position: absolute;
+
 }
