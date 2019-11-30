@@ -8,6 +8,10 @@ import { required } from 'vuelidate/lib/validators'
 
 export default {
     mixins: [validationMixin, validate],
+    data: () => ({
+        login: '',
+        password: ''
+    }),
     validations: {
         login: {
             required
@@ -16,10 +20,6 @@ export default {
             required,
         }
     },
-    data: () => ({
-        login: '',
-        password: ''
-    }),
     methods: {
         submit() {
             if (this.$v.$invalid) {

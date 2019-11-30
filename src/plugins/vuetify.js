@@ -2,7 +2,9 @@ import Vue from 'vue';
 import Vuetify, { VAppBar, VList, VListItem, VListItemTitle,
     VListItemContent, VListItemAction, VAppBarNavIcon,
     VToolbarTitle, VContent, VContainer, VSwitch, VBtn,
-    VSpacer, VToolbar, VImg, VIcon, VTextField
+    VSpacer, VToolbar, VImg, VIcon, VCard, VCardText,
+    VCardActions, VCardTitle, VRow, VCol, VTextField,
+    VAutocomplete, VDialog, VSelect
     } from 'vuetify/lib';
 import locales from '../locales';
 
@@ -13,7 +15,10 @@ Vue.use(Vuetify, {
         VAppBar, VList, VListItem, VListItemTitle,
         VListItemContent, VListItemAction, VAppBarNavIcon,
         VToolbarTitle, VContent, VContainer, VSwitch,
-        VBtn, VSpacer, VToolbar, VImg, VIcon, VTextField
+        VBtn, VSpacer, VToolbar, VImg, VIcon, VCard,
+        VCardText, VCardActions, VCardTitle,VRow,
+        VCol, VTextField, VAutocomplete, VDialog,
+        VSelect
     }
 });
 

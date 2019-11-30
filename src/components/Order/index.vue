@@ -3,9 +3,34 @@
 
 <script>
 export default {
+    props: {
+        order: {
+            type: Object,
+            default: null
+        }
+    },
+
     data: () => ({
-        createOrder: false
-    })
+        showDetails: false
+    }),
+
+    computed: {
+        detailsIcon: function() {
+            return this.showDetails ? 'mdi-arrow-collapse' : 'mdi-arrow-expand'
+        }
+    },
+
+    created: function() {
+    },
+
+    mounted: function() {
+    },
+
+    methods: {
+
+    },
+
+
 }
 </script>
 

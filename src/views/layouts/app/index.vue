@@ -28,7 +28,7 @@ export default {
             return [
                 {
                     name: 'orders',
-                    icon: 'mdi-account-clock',
+                    icon: 'mdi-progress-clock',
                     to: '/orders'
                 },
                 {

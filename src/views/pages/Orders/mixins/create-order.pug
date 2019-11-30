@@ -1,0 +1,55 @@
+v-dialog(v-model="createDialog" persistent max-width="600px")
+    v-card.order-details
+        form(@submit.prevent="create()")
+            v-card-title
+                span.headline {{ $vuetify.lang.t(`$vuetify.pages.Orders.createOrder.title`) }}
+            v-card-text
+                v-container
+                    .user-name
+                        v-text-field(
+                            v-model="order.name"
+                            :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.name`)"
+                            :error-messages="getValidateMessage('Orders', 'order.name', 'createOrder.name')"
+                            prepend-icon="mdi-account-card-details"
+                            outlined
+                        )
+                        v-text-field(
+                            v-model="order.surname"
+                            :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.surname`)"
+                            :error-messages="getValidateMessage('Orders', 'order.surname', 'createOrder.surname')"
+                            outlined
+                        )
+                    v-text-field(
+                        v-model="order.phone"
+                        :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.phone`)"
+                        :error-messages="getValidateMessage('Orders', 'order.phone', 'createOrder.phone')"
+                        v-mask="'+380-###-###-###'"
+                        hint="+380123456789"
+                        placeholder="+380"
+                        prepend-icon="mdi-cellphone"
+                        outlined
+                    )
+                    v-autocomplete(
+                        :no-data-text = "$vuetify.lang.t('$vuetify.autocomplete.noData')"
+                        :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.cityName`)"
+                        :error-messages="getValidateMessage('Orders', 'order.cityName', 'createOrder.cityName')"
+                        v-model="order.cityName"
+                        :items="cities"
+                        item-text="name"
+                        prepend-icon="mdi-city"
+                    )
+                    .street
+                        v-text-field(
+                            :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.street`)"
+                            v-model="order.street"
+                            prepend-icon="mdi-map-marker"
+                        )
+                        v-text-field(
+                            v-model="order.houseNumber"
+                            :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.houseNumber`)"
+                        )
+            v-card-actions
+                v-spacer
+                .order-create-buttons
+                    v-btn(color="red" @click="closeCreateDialog()").white--text Cancel
+                    v-btn(color="primary" type="submit") Create

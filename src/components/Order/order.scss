@@ -1,0 +1,74 @@
+$lightBlueColor: #0091EA;
+$orangeColor: #FF9800;
+$greenColor: #00C853;
+
+
+.order {
+    width: 95%;
+    display: flex;
+    margin: 15px 10px 15px 10px;
+    padding: 5px;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    min-height: 45px;
+
+    .open-details {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: -5px;
+        bottom: -5px;
+        border-radius: 50%;
+        background: lightgray;
+    }
+
+    &:hover {
+        transform: scale(1.01);
+        transition: transform .1s ease-in-out;
+    }
+
+    .main-info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-start;
+
+        .delete {
+            color: red;
+        }
+
+        & > * {
+            cursor: pointer;
+        }
+    }
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px grey solid;
+        margin-top: 15px;
+    }
+}
+
+.processing {
+    color: $orangeColor
+}
+
+.with-courier {
+    color: $lightBlueColor;
+}
+
+.completed {
+    color: $greenColor;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: all .2s ease-in;
+}
+.fade-enter, .fade-leave-to {
+    transition: all .2s ease-out;
+}

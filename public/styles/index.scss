@@ -1,1 +1,74 @@
+$tableColor: #1976D2;
+
+body {
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear,
+                left bottom,
+                left top,
+                color-stop(0.44, rgb(122,153,217)),
+                color-stop(0.72, rgb(73,125,189)),
+                color-stop(0.86, rgb(28,58,148)));
+    }
+}
+
+.table-text {
+    text-align: center;
+}
+
+.v-messages__message {
+    margin-top: 3px;
+}
+
+table.v-table {
+    max-width: none!important;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.v-data-table{
+    overflow: hidden;
+    width: 100%;
+
+    thead {
+        background-color: $tableColor;
+    }
+
+    th {
+        color: white !important;
+        border-right: 1px solid #737373;
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+
+    td {
+        text-align: center;
+    }
+
+    tr {
+        border: 1px solid #0000001f !important;
+    }
+}
+
+
+
+
+
 

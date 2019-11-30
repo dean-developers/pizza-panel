@@ -10,7 +10,6 @@ main.auth
                             :label="$vuetify.lang.t(`$vuetify.pages.Auth.form.login`)"
                             name="login"
                             prepend-icon="mdi-account"
-                            type="text"
                             v-model="login"
                             :error-messages="getValidateMessage('Auth', 'login')"
                             required
@@ -22,7 +21,7 @@ main.auth
                             prepend-icon="mdi-lock"
                             type="password"
                             v-model="password"
-                            :error-messages="getValidateMessage('Auth', 'login')"
+                            :error-messages="getValidateMessage('Auth', 'password')"
                             required
                         )
 

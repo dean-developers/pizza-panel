@@ -22,7 +22,7 @@ export default {
                 commit('REMOVE_TOKEN')
                 dispatch('addMessage', {
                     message: 'incorrectLoginOrPassword',
-                    type: 'ervalror',
+                    type: 'error',
                     locale: true
                 })
             })
@@ -34,14 +34,24 @@ export default {
         }).then(res => {
             if (res.data) {
                 commit('SET_USER', res.data)
+                // dispatch('socket_connect', res.data.id)
             }
         }).catch(error => {
             commit('SET_USER', null)
+            commit('REMOVE_TOKEN')
             dispatch('addMessage', {
                 message: error.message,
                 type: 'error',
                 locale: true
             })
+        })
+    },
+
+    socket_connect: async ({ dispatch }) => {
+        dispatch('addMessage', {
+            message: 'online',
+            type: 'success',
+            locale: true
         })
     },
 

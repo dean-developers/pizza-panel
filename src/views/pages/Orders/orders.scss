@@ -14,7 +14,31 @@
     position: absolute;
     left: 0;
     top: 0;
-    box-shadow: 0 1px 10px 0 #000;
+    box-shadow: 0 10px 15px 0 #424242;
+    overflow-y: scroll;
+}
+
+.order-details {
+    .user-name, .street {
+        display: flex;
+        justify-content: space-between;
+
+        .v-input__slot {
+            margin-right: unset !important;
+
+            &:last-child {
+                margin-left: 15px !important;
+            }
+        }
+
+        .v-input__control:nth-child(1) {
+            margin-left: 20px;
+        }
+    }
+}
+
+.order-create-buttons {
+    margin-right: calc(5% - 5px);
 }
 
 .orders-middle {
@@ -23,6 +47,17 @@
     width: 100%;
     padding: 10px 10px 5px 10px;
     color: #31373d;
+}
+
+.empty-state {
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    font-size: 20px;
+    color: grey;
 }
 
 ::v-deep .page-map {

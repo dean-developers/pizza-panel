@@ -1,15 +1,17 @@
 main
     .create-button
         v-btn.mx-2(fab color="primary")
-            v-icon(@click="createOrder = true" dark large) mdi-plus
+            v-icon(@click="createDialog = true" dark large) mdi-plus
     .orders
-        .orders-top
+        .empty-state(v-if="!orders.length")
+            v-icon(size="100px") mdi-clock-outline
+            p {{ $vuetify.lang.t(`$vuetify.pages.Orders.noOrders`) }}
+        order(v-for="(item, index) in orders" :order="item")
+    .create-order
+        include ./mixins/create-order
 
-        .orders-middle
 
-        .orders-bottom
-
-    v-map.page-map(:name="orders-map")
+    v-map.page-map
 
 
 

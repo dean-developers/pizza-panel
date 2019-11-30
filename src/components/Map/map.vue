@@ -1,10 +1,30 @@
 <template lang="pug" src="./map.pug"></template>
 
+<style lang="scss" scoped>
+    .google-map {
+        position: absolute;
+        right: 0;
+        width: calc(100% - 380px);
+        height: 100%;
+        margin: 0 auto;
+        background: gray;
+        top: 0;
+        z-index: 1;
+    }
+    .gm-control-active.gm-fullscreen-control {
+        display: none !important;
+    }
+</style>
+
 <script>
 export default {
-    name: 'google-map',
-    props: ['name'],
-    data: function () {
+    props: {
+        name: {
+            type: String,
+            default: 'google-map'
+        }
+    },
+    data: function() {
         return {
             map: '',
             markers: [
@@ -15,7 +35,7 @@ export default {
                     }
                 }
             ]
-        }
+        };
     },
     computed: {
         mapMarkers: function () {
@@ -47,25 +67,7 @@ export default {
             // eslint-disable-next-line no-undef
             new google.maps.Marker(marker)
         })
-    },
-    methods: {
-
     }
 }
 </script>
 
-<style scoped>
-    .google-map {
-        position: absolute;
-        right: 0;
-        width: calc(100% - 380px);
-        height: 100%;
-        margin: 0 auto;
-        background: gray;
-        top: 0;
-        z-index: 1;
-    }
-    .gm-control-active.gm-fullscreen-control {
-        display: none !important;
-    }
-</style>
