@@ -4,7 +4,9 @@ import Vuetify, { VAppBar, VList, VListItem, VListItemTitle,
     VToolbarTitle, VContent, VContainer, VSwitch, VBtn,
     VSpacer, VToolbar, VImg, VIcon, VCard, VCardText,
     VCardActions, VCardTitle, VRow, VCol, VTextField,
-    VAutocomplete, VDialog, VSelect
+    VAutocomplete, VDialog, VSelect, VCombobox, VChip,
+    VChipGroup, VRating, VDivider, VSheet, VSlideGroup,
+    VSlideItem, VCardSubtitle
     } from 'vuetify/lib';
 import locales from '../locales';
 
@@ -18,7 +20,9 @@ Vue.use(Vuetify, {
         VBtn, VSpacer, VToolbar, VImg, VIcon, VCard,
         VCardText, VCardActions, VCardTitle,VRow,
         VCol, VTextField, VAutocomplete, VDialog,
-        VSelect
+        VSelect, VCombobox, VChip, VChipGroup, VRating,
+        VDivider, VSheet, VSlideGroup, VSlideItem,
+        VCardSubtitle
     }
 });
 

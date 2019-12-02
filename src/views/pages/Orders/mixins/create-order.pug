@@ -1,8 +1,10 @@
 v-dialog(v-model="createDialog" persistent max-width="600px")
     v-card.order-details
         form(@submit.prevent="create()")
-            v-card-title
+            v-card-title.form-title
                 span.headline {{ $vuetify.lang.t(`$vuetify.pages.Orders.createOrder.title`) }}
+            v-card-title
+                span.headline Client details
             v-card-text
                 v-container
                     .user-name
@@ -48,8 +50,47 @@ v-dialog(v-model="createDialog" persistent max-width="600px")
                             v-model="order.houseNumber"
                             :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.houseNumber`)"
                         )
+            v-card-title
+                span.headline Order details
+            v-card-text
+                v-container
+                    v-autocomplete(
+                        :no-data-text = "$vuetify.lang.t('$vuetify.autocomplete.noData')"
+                        :items="pizzas"
+                        v-model="pizza"
+                        prepend-icon="mdi-pizza"
+                        label="Choose a pizza"
+                        item-text="name"
+                        clearable
+                        @click:clear="currentIngd = []"
+                        outlined
+                    )
+
+                    v-combobox(
+                        :items="ingredients"
+                        item-text="name"
+                        v-model="currentIngd"
+                        label="Add some ingredients ?"
+                        prepend-icon="mdi-plus"
+                        :disabled="!pizza"
+                        clearable
+                        multiple
+                        chips
+                        solo
+                    )
+                        template(v-slot:selection="{ attrs, item, select, selected }")
+                            v-chip(
+                                v-bind="attrs"
+                                :input-value="selected"
+                                @click="select"
+                                @click:close="removeIngredient(item)"
+                                color="primary"
+                                small
+                                close
+                            )
+                                strong {{ item.name }}
             v-card-actions
                 v-spacer
                 .order-create-buttons
-                    v-btn(color="red" @click="closeCreateDialog()").white--text Cancel
-                    v-btn(color="primary" type="submit") Create
+                    v-btn(color="red" @click="closeCreateDialog()").white--text {{$vuetify.lang.t(`$vuetify.buttons.cancel`)}}
+                    v-btn(color="primary" type="submit") {{$vuetify.lang.t(`$vuetify.buttons.create`)}}

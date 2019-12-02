@@ -23,6 +23,33 @@ export const constantRouterMap = [
                 }
             },
             {
+                path: 'menu',
+                name: 'menu',
+                beforeEnter: isAuth,
+                component: () => import('@/views/pages/Menu'),
+                meta: {
+                    permission: ['admin']
+                }
+            },
+            {
+                path: 'menu/pizza/create',
+                name: 'create',
+                beforeEnter: isAuth,
+                component: () => import('@/views/pages/MenuEditor'),
+                meta: {
+                    permission: ['admin']
+                }
+            },
+            {
+                path: 'menu/pizza/:id/edit',
+                name: 'edit',
+                beforeEnter: isAuth,
+                component: () => import('@/views/pages/MenuEditor'),
+                meta: {
+                    permission: ['admin']
+                }
+            },
+            {
                 path: 'users',
                 name: 'users',
                 beforeEnter: isAuth,
@@ -37,7 +64,7 @@ export const constantRouterMap = [
                 beforeEnter: isAuth,
                 component: () => import('@/views/pages/Settings'),
                 meta: {
-                    permission: ['admin']
+                    permission: ['admin', 'operator']
                 }
             },
             {

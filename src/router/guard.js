@@ -1,7 +1,7 @@
 import store from '@/store'
 
 const rolesRedirectPages = {
-    admin: '/settings',
+    admin: '/users',
     operator: '/orders'
 }
 

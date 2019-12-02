@@ -23,6 +23,10 @@ body {
     }
 }
 
+.v-container {
+    padding-top: 20px;
+}
+
 .table-text {
     text-align: center;
 }
@@ -66,6 +70,27 @@ table.v-table {
         border: 1px solid #0000001f !important;
     }
 }
+
+.plus  {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+
+    &:hover {
+        transform: scale(1.08);
+
+        .v-icon {
+            transform: rotate(10deg)
+        }
+    }
+}
+
+.back {
+    position: fixed;
+    left: 50px;
+    bottom: 50px;
+}
+
 
 
 

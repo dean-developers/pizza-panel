@@ -6,10 +6,9 @@ main
         .empty-state(v-if="!orders.length")
             v-icon(size="100px") mdi-clock-outline
             p {{ $vuetify.lang.t(`$vuetify.pages.Orders.noOrders`) }}
-        order(v-for="(item, index) in orders" :order="item")
+        order(v-for="(item, index) in orders" :order="item" :key="item.id")
     .create-order
         include ./mixins/create-order
-
 
     v-map.page-map
 

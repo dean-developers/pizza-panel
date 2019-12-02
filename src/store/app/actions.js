@@ -7,7 +7,6 @@ export default {
         await http({url: 'login', method: 'POST', data: user})
             .then(res => {
                 if (res.data) {
-                    console.log(res.data)
                     commit('SET_USER', res.data.user)
                     commit('SET_TOKEN', res.data.jwt)
                     commit('SET_TYPE', res.data.user.type)
@@ -16,7 +15,7 @@ export default {
                         type: 'success',
                         locale: true
                     })
-                    router.push('/')
+                    router.push('/users')
                 }
             }).catch(() => {
                 commit('REMOVE_TOKEN')
@@ -34,7 +33,7 @@ export default {
         }).then(res => {
             if (res.data) {
                 commit('SET_USER', res.data)
-                // dispatch('socket_connect', res.data.id)
+                commit('SET_TYPE', res.data.type)
             }
         }).catch(error => {
             commit('SET_USER', null)
@@ -44,14 +43,6 @@ export default {
                 type: 'error',
                 locale: true
             })
-        })
-    },
-
-    socket_connect: async ({ dispatch }) => {
-        dispatch('addMessage', {
-            message: 'online',
-            type: 'success',
-            locale: true
         })
     },
 

@@ -12,13 +12,15 @@ export default {
     data: () => ({
         createDialog: false,
         order: {
-            name: '',
-            surname: '',
-            phone: '',
-            cityName: '',
-            street: '',
-            houseNumber: ''
-        }
+            name: null,
+            surname: null,
+            phone: null,
+            cityName: null,
+            street: null,
+            houseNumber: null
+        },
+        pizza: null,
+        currentIngd: [],
     }),
     validations: {
         order: {
@@ -36,6 +38,7 @@ export default {
             }
         }
     },
+
     created: async function() {
         this.$socket.client.emit('received')
 
@@ -44,14 +47,32 @@ export default {
         })
 
         await this.$store.dispatch('orders/getCities')
+        await this.$store.dispatch('menu/getPizzas')
+        await this.$store.dispatch('menu/getAdditionalIngredients')
     },
+
+    watch: {
+        pizza: function() {
+            const pizza = this.pizzas.find(it => it.name === this.pizza)
+            if (pizza && pizza.ingredients) {
+                this.currentIngd = pizza.ingredients.map(it => {
+                    return {
+                        name: it,
+                        disabled: true
+                    }
+                })
+            }
+        }
+    },
+
     computed: {
         ...mapGetters(['type']),
         ...mapState({
             orders: state => state.orders.orders,
-            cities: state => state.orders.cities
+            cities: state => state.orders.cities,
+            pizzas: state => state.menu.pizzas,
+            ingredients: state => state.menu.additionalIngredients
         })
-
     },
 
     methods: {
@@ -70,10 +91,13 @@ export default {
                     })
                 })
 
-                console.log(this.orders)
-
                 this.closeCreateDialog()
             }
+        },
+
+        removeIngredient(item) {
+            this.currentIngd.splice(this.currentIngd.indexOf(item), 1)
+            this.currentIngd = [...this.currentIngd]
         },
 
         openCreateDialog: function() {

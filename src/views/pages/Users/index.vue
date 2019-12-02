@@ -3,7 +3,6 @@
 
 <script>
 import {mapState} from 'vuex'
-import Vue from 'vue'
 export default {
 
     data: () => ({
@@ -29,7 +28,6 @@ export default {
         }
     },
     created: function() {
-        console.log(Vue.filter('formatDate')(new Date))
         this.$store.dispatch('users/getUsers')
     }
 }

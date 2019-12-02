@@ -4,8 +4,19 @@ export default {
         ru: 'Русский',
         uk: 'Украинский'
     },
+    modals: {
+        delete: {
+            text: 'Вы действительно хотите удалить запись из меню?'
+        }
+    },
     autocomplete: {
         noData: 'Данные отсутсвуют'
+    },
+    buttons: {
+        create: 'Создать',
+        cancel: 'Отменить',
+        update: 'Обновить',
+        delete: 'Удалить'
     },
     validate: {
         Auth: {
@@ -44,7 +55,7 @@ export default {
         },
         Orders: {
             createOrder: {
-                title: 'Создание заказа',
+                title: 'Новый заказ',
                 name: 'Имя клиента',
                 surname: 'Фамилия клиента',
                 phone: 'Номер телефона',
@@ -75,19 +86,25 @@ export default {
         }
     },
 
-    menu: {
+    navigation: {
         orders: 'Заказы',
+        menu: 'Меню',
         users: 'Пользователи',
-        settings: 'Настройки'
+        settings: 'Настройки',
+        edit: 'Редактирование пиццы',
+        create: 'Новая пицца'
     },
     messages: {
         error: {
             incorrectLoginOrPassword: 'Неверный email или пароль',
+            pizzaDeleted: 'Пицца удалена из меню'
         },
         success: {
             login: 'Успешный вход',
             online: 'Статус: онлайн',
-            created: 'Заказ успешно создан'
+            created: 'Заказ успешно создан',
+            newPizza: 'Пицца успешно добавлена',
+            pizzaUpdated: 'Пицца успешно обновлена'
         }
     }
 };

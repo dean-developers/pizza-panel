@@ -1,0 +1,57 @@
+.pizzas-wrap {
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+
+    .pizza-card {
+        margin: 10px !important;
+        border-radius: 10px;
+        width: 400px;
+
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+
+        .content {
+            line-height: 1.3em;
+
+            .date {
+                color: grey;
+            }
+
+            .header {
+                margin-bottom: 3px;
+                font-size: 17px;
+                font-weight: bold;
+            }
+        }
+
+        .main-title {
+            justify-content: space-between;
+
+            .name {
+                color: orange;
+            }
+
+            .price {
+                color: green;
+            }
+        }
+    }
+
+    .v-card__text {
+        padding: 0;
+    }
+}
+
+.remove-card {
+    text-align: center;
+    padding: 15px;
+
+    .delete-actions {
+        display: flex;
+        justify-content: space-around;
+    }
+}

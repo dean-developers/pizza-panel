@@ -1,15 +1,16 @@
 import actions from './actions'
 import mutations from './mutations'
 
-const orders = {
+const menu = {
     namespaced: true,
     state: {
         loading: false,
-        orders: [],
-        cities: []
+        pizzas: [],
+        activePizza: null,
+        additionalIngredients: []
     },
     mutations,
     actions
 }
 
-export default orders
+export default menu

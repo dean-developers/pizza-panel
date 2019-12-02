@@ -1,0 +1,61 @@
+.v-container
+    v-card.pizza-editor
+        form(@submit.prevent="submit()")
+            v-text-field(
+                v-model="pizza.name"
+                prepend-icon="mdi-format-title"
+                label="Name"
+            )
+            v-combobox(
+                :items="ingredients"
+                item-text="name"
+                v-model="pizza.ingredients"
+                label="Ingredients"
+                prepend-icon="mdi-format-list-bulleted"
+                clearable
+                multiple
+                chips
+            )
+                template(v-slot:selection="{ attrs, item, select, selected }")
+                    v-chip(
+                        v-bind="attrs"
+                        :input-value="selected"
+                        @click="select"
+                        @click:close="removeIngredient(item)"
+                        color="primary"
+                        small
+                        close
+                    )
+                        strong {{ item.name }}
+            .parameters
+                v-text-field.price(
+                    v-model="pizza.price"
+                    prepend-icon="mdi-coin-outline"
+                    label="Price"
+                )
+                v-text-field.weight(
+                    v-model="pizza.weight"
+                    prepend-icon="mdi-weight-gram"
+                    label="Weight"
+                )
+                v-text-field.size(
+                    v-model="pizza.size"
+                    prepend-icon="mdi-diameter-outline"
+                    label="Size"
+                )
+
+            v-card-actions
+                v-spacer
+                v-btn(
+                    v-if="!editing"
+                    color="primary"
+                    type="submit"
+                ) {{$vuetify.lang.t(`$vuetify.buttons.create`)}}
+                v-btn(
+                    v-if="editing"
+                    color="primary"
+                    type="submit"
+                ) {{$vuetify.lang.t(`$vuetify.buttons.update`)}}
+    .back
+        v-btn(to="/menu").mx-2(fab color="primary")
+            v-icon(dark large) mdi-arrow-left

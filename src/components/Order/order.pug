@@ -7,12 +7,10 @@ v-card.order
             small
         ).open-details {{detailsIcon}}
 
-
     .details(v-if="showDetails")
         span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.name`)}}: {{order.client.name}}
         span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.phone`)}}: {{order.client.phone}}
         span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.createdAt`)}}: {{order.createdAt | formatDate}}
         .actions
             v-icon.delete mdi-delete
-
             v-icon.edit mdi-pencil

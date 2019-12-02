@@ -1,0 +1,19 @@
+.pizza-editor {
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.parameters {
+    display: flex;
+    justify-content: space-between;
+
+    .price {
+        margin-right: 20px;
+    }
+    .weight {
+        margin-right: 20px;
+    }
+}
+
+

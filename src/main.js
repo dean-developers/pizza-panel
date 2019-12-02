@@ -8,6 +8,8 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import Vuelidate from 'vuelidate'
 import VueMask from 'v-mask'
+// eslint-disable-next-line no-unused-vars
+const sugar = require('sugar')()
 
 import alerts from './components/Alerts/alerts'
 import Locale from './components/Locale/locale'

@@ -19,6 +19,12 @@
 }
 
 .order-details {
+    .form-title {
+        justify-content: center;
+        text-transform: uppercase;
+        color: purple;
+    }
+
     .user-name, .street {
         display: flex;
         justify-content: space-between;

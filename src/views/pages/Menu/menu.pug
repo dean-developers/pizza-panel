@@ -1,0 +1,48 @@
+.v-container
+    v-dialog(
+        v-model="deleteDialog"
+        max-width="330"
+    )
+        v-card.remove-card
+            form(name="removeFeed" @submit.prevent="deletePizza()")
+                v-card-title {{$vuetify.lang.t(`$vuetify.modals.delete.text`)}}
+                .delete-actions
+                    v-btn(
+                        @click.native="deleteDialog=false"
+                        color="red"
+                    ).white--text {{$vuetify.lang.t(`$vuetify.buttons.cancel`)}}
+                    v-btn(
+                        type="submit"
+                        color="primary"
+                    ) {{$vuetify.lang.t(`$vuetify.buttons.delete`)}}
+    .pizzas-wrap
+        v-card.pizza-card(v-for="(item, index) in pizzas" :key="item.id")
+            v-img(src='https://cdn.vuetifyjs.com/images/cards/cooking.png')
+            v-card-title.main-title
+                span.name {{ item.name }}
+                span.price {{ item.price }} &#8372
+            v-divider
+            v-card-title Ingredients
+            v-card-text
+                v-chip-group(
+                    center-active
+                    active-class="primary"
+                    show-arrows
+                    mandatory
+                )
+                    v-chip(
+                        v-for="key in item.ingredients"
+                        :key="key"
+                        small
+                    ) {{ key }}
+            v-card-title Parameters
+            v-card-text
+                v-card-subtitle Weight {{ item.weight }}
+                v-card-subtitle Size {{ item.size }}
+            v-card-actions.actions
+                v-spacer
+                v-icon(@click="goToEditor(item)").edit mdi-pencil
+                v-icon.delete(@click="openDeleteDialog(item)" color="red") mdi-delete
+    .plus
+        v-btn(to="/menu/pizza/create").mx-2(fab color="primary")
+            v-icon(dark large) mdi-plus
