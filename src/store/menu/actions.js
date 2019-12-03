@@ -4,7 +4,7 @@ import router from '@/router';
 
 export default {
     getPizzas: async ({ commit, dispatch }) => {
-        await http({ url: 'pizza', method: 'get' })
+        await http({ url: 'pizzas', method: 'get' })
             .then(res => {
                 if (res.data) {
                     commit('SET_PIZZAS', res.data)
@@ -14,12 +14,11 @@ export default {
                     message: err.message,
                     type: 'error',
                     locale: true
-                })
+                }, { root: true })
             })
     },
 
     getPizzaById: async ({commit, dispatch}, pizzaId) => {
-        console.log(pizzaId)
         await http({
             url: 'pizza/' + pizzaId,
             method: 'get',
@@ -32,7 +31,7 @@ export default {
                 message: err.message,
                 type: 'error',
                 locale: true
-            })
+            }, { root: true })
         })
     },
 
@@ -105,10 +104,9 @@ export default {
     },
 
     getAdditionalIngredients: async ({ commit, dispatch }) => {
-        await http({ url: 'pizza/ingredients', method: 'get' })
+        await http({ url: 'ingredients', method: 'get' })
             .then(res => {
                 if (res.data && res.data.ingredients) {
-                    console.log(res.data)
                     commit('SET_ADDITIONAL_INGREDIENTS', res.data.ingredients)
                 }
             }).catch(err => {

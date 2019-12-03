@@ -24,7 +24,7 @@ body {
 }
 
 .v-container {
-    padding-top: 20px;
+    padding-top: 50px;
 }
 
 .table-text {
@@ -73,8 +73,8 @@ table.v-table {
 
 .plus  {
     position: fixed;
-    right: 50px;
-    bottom: 50px;
+    left: 30px;
+    bottom: 30px;
 
     &:hover {
         transform: scale(1.08);
@@ -87,8 +87,16 @@ table.v-table {
 
 .back {
     position: fixed;
-    left: 50px;
-    bottom: 50px;
+    left: 30px;
+    bottom: 30px;
+}
+
+.light-bg {
+    background: url(../../public/img/light_backgroud.png) !important;
+}
+
+.dark-bg {
+    background: url(../../public/img/dark_background.png) !important;
 }
 
 

@@ -55,7 +55,7 @@ v-dialog(v-model="createDialog" persistent max-width="600px")
             v-card-text
                 v-container
                     v-autocomplete(
-                        :no-data-text = "$vuetify.lang.t('$vuetify.autocomplete.noData')"
+                        :no-data-text="$vuetify.lang.t('$vuetify.autocomplete.noData')"
                         :items="pizzas"
                         v-model="pizza"
                         prepend-icon="mdi-pizza"

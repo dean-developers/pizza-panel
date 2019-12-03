@@ -1,13 +1,12 @@
-v-app(id="inspire")
+v-app(id="inspire" :class="background")
     v-navigation-drawer(
         v-model="drawer"
         temporary
         clipped
         app
     )
-        v-list-item
-            v-list-item-content
-                v-list-item-title.menu-title Pizza
+        v-img(:aspect-ratio="16/9" src="/img/material.webp")
+            span.menu-title {{$vuetify.lang.t(`$vuetify.roles.operator`)}}: {{user.login}}
         v-divider
         v-list(dense)
             v-list-item(
@@ -21,7 +20,7 @@ v-app(id="inspire")
                 v-list-item-content
                     v-list-item-title {{$vuetify.lang.t(`$vuetify.navigation.${item.name}`)}}
 
-    v-app-bar(color="primary")
+    v-app-bar(color="primary" fixed)
         v-app-bar-nav-icon(@click.stop="drawer = !drawer")
         v-toolbar-title.d-none.d-sm-flex.text-center.app-bar-title {{$vuetify.lang.t(`$vuetify.navigation.${routeName}`)}}
         .actions

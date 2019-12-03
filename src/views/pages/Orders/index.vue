@@ -3,7 +3,7 @@
 
 <script>
 import {mapGetters, mapState} from 'vuex'
-import { validationMixin } from 'vuelidate';
+import { validationMixin } from 'vuelidate'
 import validate from '@/mixins/validate'
 import { required } from 'vuelidate/lib/validators'
 

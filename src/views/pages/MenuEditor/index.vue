@@ -3,7 +3,11 @@
 
 <script>
 import { mapState } from 'vuex'
+import { validationMixin } from 'vuelidate';
+import validate from '@/mixins/validate'
+import { required } from 'vuelidate/lib/validators'
 export default {
+    mixins:[validate, validationMixin],
     data: () => ({
         pizza: {
             name: null,
@@ -13,24 +17,37 @@ export default {
             size: null
         }
     }),
+    validations: {
+        pizza: {
+            name: {
+                required
+            },
+            ingredients: {
+                required
+            },
+            price: {
+                required
+            },
+            weight: {
+                required
+            },
+            size: {
+                required
+            }
+        }
+    },
 
     created: async function() {
-        //
+        await this.$store.dispatch('menu/getAdditionalIngredients')
         if (this.editing) {
             await this.$store.dispatch('menu/getPizzaById', this.$route.params.id)
-            this.pizza = Object.assign({}, this.activePizza, {
-                ingredients: this.activePizza.ingredients.map(it => {
-                    return {
-                        name: it
-                    }
-                })
-            })
+            this.pizza = Object.assign({}, this.activePizza)
         }
     },
 
     computed: {
         ...mapState({
-            ingredients: state => state.menu.additionalIngredients,
+            ingredients: state => state.menu.additionalIngredients.map('name') || [],
             activePizza: state => state.menu.activePizza
         }),
 
@@ -40,8 +57,11 @@ export default {
     },
 
     beforeRouteLeave(from, to, next) {
-        this.reset()
-        next()
+        this.$store.commit('menu/RESET_ACTIVE_PIZZA')
+        setTimeout(() => {
+            next()
+        }, 1000)
+
     },
 
     methods: {
@@ -51,25 +71,31 @@ export default {
         },
 
         submit: async function() {
-            if (this.editing) {
-                await this.$store.dispatch('menu/editPizza', Object.assign({}, this.pizza, {
-                    ingredients: this.pizza.ingredients.map('name')
-                }))
+            if (this.$v.$invalid) {
+                this.$v.$touch();
             } else {
-                await this.$store.dispatch('menu/createPizza', Object.assign({}, this.pizza, {
-                    ingredients: this.pizza.ingredients.map('name')
-                }))
+                if (this.editing) {
+                    await this.$store.dispatch('menu/editPizza', this.pizza)
+                } else {
+                    await this.$store.dispatch('menu/createPizza', this.pizza)
+                }
+
+                this.reset()
             }
         },
 
         reset: function () {
-            this.pizza = {
-                name: null,
-                ingredients: [],
-                price: null,
-                weight: null,
-                size: null
-            }
+            this.$nextTick(() => {
+                this.pizza = {
+                    name: null,
+                    ingredients: [],
+                    cost: null,
+                    weight: null,
+                    size: null
+                }
+
+                this.$v.$reset()
+            })
         }
     }
 }

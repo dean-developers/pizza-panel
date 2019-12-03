@@ -10,7 +10,6 @@ export default {
     }),
 
     created: async function() {
-        await this.$store.dispatch('menu/getAdditionalIngredients')
         await this.$store.dispatch('menu/getPizzas')
     },
 

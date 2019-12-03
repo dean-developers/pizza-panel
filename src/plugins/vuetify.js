@@ -6,7 +6,7 @@ import Vuetify, { VAppBar, VList, VListItem, VListItemTitle,
     VCardActions, VCardTitle, VRow, VCol, VTextField,
     VAutocomplete, VDialog, VSelect, VCombobox, VChip,
     VChipGroup, VRating, VDivider, VSheet, VSlideGroup,
-    VSlideItem, VCardSubtitle
+    VSlideItem, VCardSubtitle, VExpandTransition, VHover
     } from 'vuetify/lib';
 import locales from '../locales';
 
@@ -22,7 +22,7 @@ Vue.use(Vuetify, {
         VCol, VTextField, VAutocomplete, VDialog,
         VSelect, VCombobox, VChip, VChipGroup, VRating,
         VDivider, VSheet, VSlideGroup, VSlideItem,
-        VCardSubtitle
+        VCardSubtitle, VExpandTransition, VHover
     }
 });
 

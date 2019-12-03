@@ -17,12 +17,12 @@
                     ) {{$vuetify.lang.t(`$vuetify.buttons.delete`)}}
     .pizzas-wrap
         v-card.pizza-card(v-for="(item, index) in pizzas" :key="item.id")
-            v-img(src='https://cdn.vuetifyjs.com/images/cards/cooking.png')
+            v-img(src="/img/lorem-image.png")
             v-card-title.main-title
                 span.name {{ item.name }}
                 span.price {{ item.price }} &#8372
             v-divider
-            v-card-title Ingredients
+            v-card-title {{$vuetify.lang.t(`$vuetify.pages.Menu.ingredients`)}}
             v-card-text
                 v-chip-group(
                     center-active
@@ -35,14 +35,33 @@
                         :key="key"
                         small
                     ) {{ key }}
-            v-card-title Parameters
+            v-card-title {{$vuetify.lang.t(`$vuetify.pages.Menu.parameters`)}}
             v-card-text
-                v-card-subtitle Weight {{ item.weight }}
-                v-card-subtitle Size {{ item.size }}
+                v-card-subtitle.weight
+                    span.mark &#9737
+                    span {{$vuetify.lang.t(`$vuetify.pages.Menu.weight`)}}: {{ item.weight }}
+                v-card-subtitle.size
+                    span.mark &#9737
+                    span {{$vuetify.lang.t(`$vuetify.pages.Menu.size`)}}: {{ item.size }}
             v-card-actions.actions
-                v-spacer
-                v-icon(@click="goToEditor(item)").edit mdi-pencil
-                v-icon.delete(@click="openDeleteDialog(item)" color="red") mdi-delete
+                v-btn(
+                    @click="openDeleteDialog(item)"
+                    color="red"
+                    outlined
+                    small
+                    tile
+                )
+                    v-icon(left) mdi-delete
+                    span {{$vuetify.lang.t(`$vuetify.buttons.delete`)}}
+                v-btn(
+                    @click="goToEditor(item)"
+                    color="success"
+                    outlined
+                    small
+                    tile
+                )
+                    v-icon(left) mdi-pencil
+                    span {{$vuetify.lang.t(`$vuetify.buttons.edit`)}}
     .plus
         v-btn(to="/menu/pizza/create").mx-2(fab color="primary")
             v-icon(dark large) mdi-plus

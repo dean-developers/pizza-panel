@@ -4,6 +4,9 @@ export default {
         ru: 'Russian',
         uk: 'Ukrainian'
     },
+    roles: {
+        operator: "Operator"
+    },
     modals: {
         delete: {
             text: 'Are you really want to delete item from menu?'
@@ -15,8 +18,9 @@ export default {
     buttons: {
         create: 'Create',
         cancel: 'Cancel',
-        update: 'Edit',
-        delete: 'Delete'
+        update: 'Update',
+        delete: 'Delete',
+        edit: 'Edit'
     },
     validate: {
         Auth: {
@@ -41,6 +45,23 @@ export default {
                 cityName: {
                     required: 'Choose city for delivery'
                 }
+            }
+        },
+        Menu: {
+            name: {
+                required: 'Fill a pizza name',
+            },
+            ingredients: {
+                required: 'Choose an ingredients'
+            },
+            price: {
+                required: 'Fill a price'
+            },
+            weight: {
+                required: 'Fill a weight'
+            },
+            size: {
+                required: 'Fill a diameter'
             }
         }
     },
@@ -74,6 +95,14 @@ export default {
                 }
             },
             noOrders: "Orders list is empty"
+        },
+        Menu: {
+            ingredients: 'Ingredients',
+            parameters: 'Parameters',
+            weight: 'Weight',
+            size: 'Diameter',
+            price: 'Price',
+            name: 'Name'
         },
         Users: {
             table: {

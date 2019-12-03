@@ -2,15 +2,25 @@
 <style lang="scss" src="./app.scss"></style>
 
 <script>
-import { mapState } from 'vuex'
-export default {
+    import {mapState} from 'vuex'
+
+    export default {
     data: () => ({
-        drawer: false
+        drawer: false,
+        fixed: false
     }),
 
     created: function() {
         this.$store.dispatch('getUser')
         this.$vuetify.theme.dark = this.theme;
+    },
+
+    mounted: function() {
+        window.addEventListener('keydown', e => {
+            if (e.ctrlKey && e.which === 192) {
+                this.drawer = !this.drawer
+            }
+        })
     },
 
     methods: {
@@ -21,7 +31,9 @@ export default {
 
     computed: {
         ...mapState({
-            type: state => state.app.type
+            type: state => state.app.type,
+            user: state => state.app.user,
+            theme: state => state.app.theme
         }),
         theme: {
             get() {
@@ -32,7 +44,9 @@ export default {
                 this.$vuetify.theme.dark = val;
                 this.$store.commit('TOGGLE_THEME', val);
             },
-
+        },
+        background: function() {
+            return !this.theme ? 'light-bg' : 'dark-bg'
         },
         navigation() {
             return [

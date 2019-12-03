@@ -4,6 +4,9 @@ export default {
         ru: 'Русский',
         uk: 'Украинский'
     },
+    roles: {
+        operator: "Оператор"
+    },
     modals: {
         delete: {
             text: 'Вы действительно хотите удалить запись из меню?'
@@ -16,7 +19,8 @@ export default {
         create: 'Создать',
         cancel: 'Отменить',
         update: 'Обновить',
-        delete: 'Удалить'
+        delete: 'Удалить',
+        edit: 'Редактировать'
     },
     validate: {
         Auth: {
@@ -41,6 +45,23 @@ export default {
                 cityName: {
                     required: 'Выберите город доставки'
                 }
+            }
+        },
+        Menu: {
+            name: {
+                required: 'Введите название пиццы',
+            },
+            ingredients: {
+                required: 'Выберите ингредиенты'
+            },
+            price: {
+                required: 'Укажите цену'
+            },
+            weight: {
+                required: 'Укажите вес'
+            },
+            size: {
+                required: 'Укажите диаметр'
             }
         }
     },
@@ -74,6 +95,14 @@ export default {
                 }
             },
             noOrders: "Список заказов пуст"
+        },
+        Menu: {
+            ingredients: 'Ингредиенты',
+            parameters: 'Параметры',
+            weight: 'Вес',
+            size: 'Диаметр',
+            price: 'Цена',
+            name: 'Название'
         },
         Users: {
             table: {

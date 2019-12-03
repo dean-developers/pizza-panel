@@ -2,15 +2,18 @@
     v-card.pizza-editor
         form(@submit.prevent="submit()")
             v-text-field(
+                :label="$vuetify.lang.t(`$vuetify.pages.Menu.name`)"
+                :error-messages="getValidateMessage('Menu', 'pizza.name', 'name')"
                 v-model="pizza.name"
                 prepend-icon="mdi-format-title"
-                label="Name"
             )
             v-combobox(
+                :label="$vuetify.lang.t(`$vuetify.pages.Menu.ingredients`)"
+                :no-data-text="$vuetify.lang.t('$vuetify.autocomplete.noData')"
                 :items="ingredients"
                 item-text="name"
+                :error-messages="getValidateMessage('Menu', 'pizza.ingredients', 'ingredients')"
                 v-model="pizza.ingredients"
-                label="Ingredients"
                 prepend-icon="mdi-format-list-bulleted"
                 clearable
                 multiple
@@ -26,22 +29,25 @@
                         small
                         close
                     )
-                        strong {{ item.name }}
+                        strong {{ item && item.name ? item.name : item }}
             .parameters
                 v-text-field.price(
+                    :label="$vuetify.lang.t(`$vuetify.pages.Menu.price`)"
+                    :error-messages="getValidateMessage('Menu', 'pizza.price', 'price')"
                     v-model="pizza.price"
                     prepend-icon="mdi-coin-outline"
-                    label="Price"
                 )
                 v-text-field.weight(
+                    :label="$vuetify.lang.t(`$vuetify.pages.Menu.weight`)"
+                    :error-messages="getValidateMessage('Menu', 'pizza.weight', 'weight')"
                     v-model="pizza.weight"
                     prepend-icon="mdi-weight-gram"
-                    label="Weight"
                 )
                 v-text-field.size(
+                    :label="$vuetify.lang.t(`$vuetify.pages.Menu.size`)"
+                    :error-messages="getValidateMessage('Menu', 'pizza.size', 'size')"
                     v-model="pizza.size"
                     prepend-icon="mdi-diameter-outline"
-                    label="Size"
                 )
 
             v-card-actions
