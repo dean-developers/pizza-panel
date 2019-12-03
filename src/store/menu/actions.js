@@ -47,7 +47,9 @@ export default {
                     type: 'success',
                     locale: true
                 }, { root: true })
-                router.push('/menu')
+                setTimeout(() => {
+                    router.push('/menu')
+                }, 1000)
             }
         }).catch(err => {
             dispatch('addMessage', {
@@ -68,9 +70,12 @@ export default {
                 dispatch('addMessage', {
                     message: 'pizzaUpdated',
                     type: 'success',
-                    locale: true
+                    locale: true,
                 }, { root: true })
-                router.push('/menu')
+                setTimeout(() => {
+                    router.push('/menu')
+                }, 1000)
+
             }
         }).catch(err => {
             dispatch('addMessage', {
