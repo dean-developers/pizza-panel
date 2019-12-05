@@ -11,6 +11,7 @@ export default {
     mixins: [validationMixin, validate],
     data: () => ({
         createDialog: false,
+        pizzasCount: 1,
         order: {
             name: null,
             surname: null,
@@ -20,6 +21,12 @@ export default {
             houseNumber: null
         },
         pizza: null,
+        orderPizzas: [
+            {
+                pizzaId: null,
+                ingredients: []
+            }
+        ],
         currentIngd: [],
     }),
     validations: {
@@ -52,16 +59,18 @@ export default {
     },
 
     watch: {
-        pizza: function() {
-            const pizza = this.pizzas.find(it => it.name === this.pizza)
-            if (pizza && pizza.ingredients) {
-                this.currentIngd = pizza.ingredients.map(it => {
-                    return {
-                        name: it,
-                        disabled: true
-                    }
-                })
+        pizza: function(value) {
+            if (value) {
+                this.currentIngd = this.pizza.ingredients
+                this.orderPizzas[0].pizzaId = value.id
             }
+        },
+
+        currentIngd: function(newIngredients) {
+            if (newIngredients) {
+                this.orderPizzas[0].ingredients = newIngredients.map('id').filter(it => !!it)
+            }
+
         }
     },
 
@@ -71,8 +80,14 @@ export default {
             orders: state => state.orders.orders,
             cities: state => state.orders.cities,
             pizzas: state => state.menu.pizzas,
-            ingredients: state => state.menu.additionalIngredients
-        })
+            ingredients: state => state.menu.additionalIngredients,
+            calculatedOrder: state => state.orders.calculatedOrder,
+        }),
+        totalPrice: function () {
+            return this.calculatedOrder &&
+                this.calculatedOrder.map('sum')
+                    .reduce((a, b) => a + b)
+        },
     },
 
     methods: {
@@ -95,9 +110,25 @@ export default {
             }
         },
 
+        calculateOrder: async function() {
+            await this.$store.dispatch('orders/calculateOrder', this.orderPizzas)
+        },
+
+        disabledIngredient: function(ingredient) {
+            return !ingredient.hasOwnProperty('name')
+        },
+
         removeIngredient(item) {
             this.currentIngd.splice(this.currentIngd.indexOf(item), 1)
             this.currentIngd = [...this.currentIngd]
+        },
+
+        addPizzaToOrder: function() {
+            this.orderPizzas.push({
+                id: [],
+                ingredients: [],
+            })
+            this.pizzasCount++
         },
 
         openCreateDialog: function() {
@@ -111,14 +142,14 @@ export default {
         },
 
         reset: function () {
-            this.order = {
-                name: '',
-                surname: '',
-                phone: '',
-                cityName: '',
-                street: '',
-                houseNumber: ''
-            }
+            Object.keys(this.order).forEach(it => {
+                this.order[it] = null
+            })
+
+            this.pizza = null
+            this.currentIngd = null
+
+            this.$store.commit('orders/RESET_CALCULATED_ORDER')
 
             this.$nextTick(() => { this.$v.$reset() })
         }

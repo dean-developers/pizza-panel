@@ -20,7 +20,9 @@ export default {
         cancel: 'Cancel',
         update: 'Update',
         delete: 'Delete',
-        edit: 'Edit'
+        edit: 'Edit',
+        add: 'Add order',
+        calculate: 'Calculate'
     },
     validate: {
         Auth: {
@@ -82,7 +84,12 @@ export default {
                 phone: 'Phone number',
                 cityName: 'Delivery city',
                 street: 'Street',
-                houseNumber: 'House number'
+                houseNumber: 'House number',
+                clientDetails: 'Client details',
+                orderDetails: 'Order details',
+                choosePizza: 'Choose pizza',
+                additionalIngredients: 'Additional ingredients',
+                totalPrice: 'Total price'
             },
             order: {
                 orderId: 'Order id',
@@ -99,8 +106,8 @@ export default {
         Menu: {
             ingredients: 'Ingredients',
             parameters: 'Parameters',
-            weight: 'Weight',
-            size: 'Diameter',
+            weight: 'Weight (in grams)',
+            size: 'Diameter (in centimeters)',
             price: 'Price',
             name: 'Name'
         },
@@ -121,7 +128,8 @@ export default {
         users: 'Users',
         settings: 'Settings',
         edit: 'Edit pizza',
-        create: 'New pizza'
+        create: 'New pizza',
+        logout: "Log out"
     },
 
     messages: {

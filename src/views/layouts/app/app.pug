@@ -6,7 +6,7 @@ v-app(id="inspire" :class="background")
         app
     )
         v-img(:aspect-ratio="16/9" src="/img/material.webp")
-            span.menu-title {{$vuetify.lang.t(`$vuetify.roles.operator`)}}: {{user.login}}
+            span.menu-title {{$vuetify.lang.t(`$vuetify.roles.operator`)}}: {{!!user && user.login}}
         v-divider
         v-list(dense)
             v-list-item(
@@ -19,6 +19,11 @@ v-app(id="inspire" :class="background")
                     v-icon {{ item.icon }}
                 v-list-item-content
                     v-list-item-title {{$vuetify.lang.t(`$vuetify.navigation.${item.name}`)}}
+            v-list-item(v-if="$store.getters.loggedIn" @click="logout()" color="accent")
+                v-list-item-icon
+                    v-icon(color="red") mdi-exit-run
+                v-list-item-content
+                    v-list-item-title Logout
 
     v-app-bar(color="primary" fixed)
         v-app-bar-nav-icon(@click.stop="drawer = !drawer")
@@ -26,8 +31,6 @@ v-app(id="inspire" :class="background")
         .actions
             v-switch(class='switch-theme' v-model="theme")
             v-locale
-            v-btn(v-if="$store.getters.loggedIn" @click="logout()" color="accent").exit-btn
-                v-icon mdi-exit-to-app
     v-content
         v-container.pt-5
             router-view

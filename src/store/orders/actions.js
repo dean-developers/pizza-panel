@@ -15,5 +15,24 @@ export default {
                 type: 'error'
             })
         })
+    },
+
+    calculateOrder: async ({ commit, dispatch }, orderPizzas) => {
+        await http({
+            url: 'order/calculate',
+            method: 'post',
+            data: {
+                pizzas: orderPizzas
+            }
+        }).then(res => {
+            if (res.data) {
+                commit('SET_CALCULATED_ORDER', res.data)
+            }
+        }).catch(err => {
+            dispatch('addMessage', {
+                message: err.message,
+                type: 'error'
+            }, { root: true })
+        })
     }
 }

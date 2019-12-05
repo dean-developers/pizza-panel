@@ -11,8 +11,8 @@ export default {
     mixins: [validationMixin, validate],
 
     data: () => ({
-        login: '',
-        password: ''
+        login: null,
+        password: null
     }),
 
     validations: {

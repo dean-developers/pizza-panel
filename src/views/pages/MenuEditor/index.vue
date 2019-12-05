@@ -85,14 +85,11 @@
             },
 
             reset: function () {
+                //TODO: Check this stuff.
                 this.$nextTick(() => {
-                    this.pizza = {
-                        name: null,
-                        ingredients: [],
-                        cost: null,
-                        weight: null,
-                        size: null
-                    }
+                    Object.keys(this.pizza).forEach(it => {
+                        this.order[it] = null
+                    })
 
                     this.$v.$reset()
                 })

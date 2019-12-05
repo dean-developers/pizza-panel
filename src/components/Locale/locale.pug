@@ -1,11 +1,14 @@
-v-menu(offset-y)
+v-menu(offset-y prepend-icon="mdi-web")
     template(v-slot:activator="{ on }")
-        v-btn(v-on="on" color="accent") {{currentLang}}
-    v-list
+        v-btn(v-on="on" color="accent" icon tile)
+            v-img(:src="`/img/locales/${currentLang}.png`")
+    v-list(dense tile)
         v-list-item(
             v-for="(locale, index) in locales"
             :key="index"
             @click="changeLocale(locale)"
             :class="{'active': locale === currentLang}"
         )
-            v-list-item-title {{$vuetify.lang.t(`$vuetify.locales.${locale}`)}}
+            v-list-item
+                v-img(:src="`/img/locales/${locale}.png`")
+

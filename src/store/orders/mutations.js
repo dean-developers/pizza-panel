@@ -18,4 +18,12 @@ export default {
     SET_ADDITIONAL_INGREDIENTS: (state, ingredients) => {
         state.additionalIngredients = ingredients
     },
+
+    SET_CALCULATED_ORDER: (state, order) => {
+        state.calculatedOrder = order
+    },
+
+    RESET_CALCULATED_ORDER: (state) => {
+        state.calculatedOrder = null
+    }
 }

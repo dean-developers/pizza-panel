@@ -6,7 +6,8 @@ const orders = {
     state: {
         loading: false,
         orders: [],
-        cities: []
+        cities: [],
+        calculatedOrder: null
     },
     mutations,
     actions

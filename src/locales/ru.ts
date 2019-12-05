@@ -20,7 +20,9 @@ export default {
         cancel: 'Отменить',
         update: 'Обновить',
         delete: 'Удалить',
-        edit: 'Редактировать'
+        edit: 'Редактировать',
+        add: 'Добавить заказ',
+        calculate: 'Рассчитать'
     },
     validate: {
         Auth: {
@@ -82,7 +84,12 @@ export default {
                 phone: 'Номер телефона',
                 cityName: 'Город доставки',
                 street: 'Улица',
-                houseNumber: 'Номер дома'
+                houseNumber: 'Номер дома',
+                clientDetails: 'Информация о клиенте',
+                orderDetails: 'Детали заказа',
+                choosePizza: 'Выберите пиццу',
+                additionalIngredients: 'Дополнительные ингредиенты',
+                totalPrice: 'Общая цена'
             },
             order: {
                 orderId: 'Номер заказа',
@@ -99,8 +106,8 @@ export default {
         Menu: {
             ingredients: 'Ингредиенты',
             parameters: 'Параметры',
-            weight: 'Вес',
-            size: 'Диаметр',
+            weight: 'Вес (в граммах)',
+            size: 'Диаметр (в сантиметрах)',
             price: 'Цена',
             name: 'Название'
         },
@@ -121,7 +128,8 @@ export default {
         users: 'Пользователи',
         settings: 'Настройки',
         edit: 'Редактирование пиццы',
-        create: 'Новая пицца'
+        create: 'Новая пицца',
+        logout: "Выйти"
     },
     messages: {
         error: {

@@ -20,6 +20,48 @@
 }
 
 .order-details {
+    .calculated-info {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.justify-right {
+    justify-content: flex-end !important;
+}
+
+.orders-header {
+    padding-bottom: unset !important;
+}
+
+.order-number {
+    padding-left: unset !important;
+}
+
+.add-order-wrapper {
+    display: flex;
+    margin-right: 10px;
+    margin-top: 10px;
+    justify-content: space-between;
+
+    .add-order-btn {
+        margin-left: 10px;
+    }
+
+    &:first-child {
+        margin-right: 20px;
+    }
+
+    &__total-price {
+        font-family: Roboto, sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        padding: 5px 16px 0 16px;
+        color: orange;
+    }
+}
+
+.order-details{
     .form-title {
         justify-content: center;
         text-transform: uppercase;
@@ -41,6 +83,10 @@
         .v-input__control:nth-child(1) {
             margin-left: 20px;
         }
+    }
+
+    .cancel-button {
+        margin-left: 20px;
     }
 }
 

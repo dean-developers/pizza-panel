@@ -35,14 +35,16 @@
                         :key="key"
                         small
                     ) {{ key }}
+            v-divider
             v-card-title {{$vuetify.lang.t(`$vuetify.pages.Menu.parameters`)}}
             v-card-text
                 v-card-subtitle.weight
-                    span.mark &#9737
-                    span {{$vuetify.lang.t(`$vuetify.pages.Menu.weight`)}}: {{ item.weight }}
+                    span.mark &#9737 {{$vuetify.lang.t(`$vuetify.pages.Menu.weight`)}}:
+                    span {{ item.weight }}
                 v-card-subtitle.size
-                    span.mark &#9737
-                    span {{$vuetify.lang.t(`$vuetify.pages.Menu.size`)}}: {{ item.size }}
+                    span.mark &#9737 {{$vuetify.lang.t(`$vuetify.pages.Menu.size`)}}:
+                    span {{ item.size }}
+            v-divider
             v-card-actions.actions
                 v-btn(
                     @click="openDeleteDialog(item)"

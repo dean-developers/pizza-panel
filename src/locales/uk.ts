@@ -20,7 +20,9 @@ export default {
         cancel: 'Відмінити',
         update: 'Оновити',
         delete: 'Видалити',
-        edit: 'Редагувати'
+        edit: 'Редагувати',
+        add: 'Додати замовлення',
+        calculate: 'Розрахувати'
     },
     validate: {
         Auth: {
@@ -82,7 +84,12 @@ export default {
                 phone: 'Номер телефону',
                 cityName: 'Місто замовлення',
                 street: 'Вулиця',
-                houseNumber: 'Номер будинку'
+                houseNumber: 'Номер будинку',
+                clientDetails: 'Інформація про клієнта',
+                orderDetails: 'Деталі замовлення',
+                choosePizza: 'Оберіть піццу',
+                additionalIngredients: 'Додаткові інгрідієнти',
+                totalPrice: 'Загальна ціна'
             },
             order: {
                 orderId: 'Номер замовлення',
@@ -99,8 +106,8 @@ export default {
         Menu: {
             ingredients: 'Інгрідієнти',
             parameters: 'Параметри',
-            weight: 'Вага',
-            size: 'Діаметр',
+            weight: 'Вага (в грамах)',
+            size: 'Діаметр (в сантиметрах)',
             price: 'Ціна',
             name: 'Назва'
         },
@@ -120,7 +127,8 @@ export default {
         users: 'Користувачі',
         settings: 'Налаштування',
         edit: 'Редагування піцци',
-        create: 'Нова піцца'
+        create: 'Нова піцца',
+        logout: "Вийти"
     },
     messages: {
         error: {
