@@ -97,7 +97,6 @@ export default {
             if (this.$v.$invalid) {
                 this.$v.$touch()
             } else {
-                console.log(this.orderPizzas)
                 this.$store.dispatch('orders/emitCreateOrder', Object.assign({}, this.order, {
                         pizzas: this.orderPizzas
                     }
