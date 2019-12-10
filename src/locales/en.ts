@@ -99,7 +99,10 @@ export default {
                 createdAt: 'Created at',
                 states: {
                     processing: 'In process'
-                }
+                },
+                pizza: 'Pizza',
+                price: 'Price',
+                additional: 'Additional'
             },
             noOrders: "Orders list is empty"
         },
@@ -119,6 +122,11 @@ export default {
                 createdAt: 'Created',
                 actions: 'Actions'
             }
+        },
+        404: {
+            title: 'Wooooops :(((',
+            text: 'We dont know about this page, so you can go back if u want',
+            back: 'Go back'
         }
     },
 

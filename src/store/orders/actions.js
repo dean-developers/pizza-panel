@@ -17,6 +17,22 @@ export default {
         })
     },
 
+    // eslint-disable-next-line no-unused-vars
+    emitCreateOrder: function({commit, dispatch}, order) {
+        this._vm.$socket.client.emit('order', order)
+    },
+
+    socket_order: ({ commit, dispatch }, data) => {
+        if (data) {
+            commit('CREATE_ORDER', data)
+            dispatch('addMessage', {
+                message: 'created',
+                type: 'success',
+                locale: true
+            }, { root: true })
+        }
+    },
+
     calculateOrder: async ({ commit, dispatch }, orderPizzas) => {
         await http({
             url: 'order/calculate',

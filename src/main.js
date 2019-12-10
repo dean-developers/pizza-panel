@@ -25,9 +25,7 @@ Vue.use(VueMask)
 
 // ============= Filters =============
 Vue.filter('formatDate', function(value) {
-    return new Date(value)
-        .toLocaleString()
-        .replace(/,/, '')
+    return new Date(value).format('%H:%M:%S')
 })
 
 // ===================================

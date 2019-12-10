@@ -31,6 +31,13 @@ $greenColor: #00C853;
     .main-info {
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
+
+        .order-status {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
     }
 
     .actions {
@@ -56,6 +63,14 @@ $greenColor: #00C853;
 
 .processing {
     color: $orangeColor
+}
+
+.new-order {
+    color: green;
+}
+
+.old-order {
+    color: red;
 }
 
 .with-courier {

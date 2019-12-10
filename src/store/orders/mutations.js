@@ -8,7 +8,8 @@ export default {
     },
 
     CREATE_ORDER: (state, order) => {
-        state.orders.unshift(order)
+        state.orders.unshift(order[0])
+        console.log('Order in mutation', state.orders)
     },
 
     SET_PIZZAS: (state, pizzas) => {

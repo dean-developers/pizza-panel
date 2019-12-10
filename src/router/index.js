@@ -70,6 +70,7 @@ export const constantRouterMap = [
             {
                 path: '404',
                 beforeEnter: getUser,
+                name: '404',
                 component: () => import('@/views/pages/404'),
                 hidden: true
             }

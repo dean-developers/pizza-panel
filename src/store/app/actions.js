@@ -50,6 +50,13 @@ export default {
         commit('REMOVE_TOKEN')
     },
 
+    socket_error: ({dispatch}, data) => {
+        dispatch('addMessage', {
+            message: data.description,
+            type: 'error'
+        })
+    },
+
     addMessage: ({ commit, state }, message) => {
         const alreadyExistMessage = state.messages.find(it => {
             let equal = true

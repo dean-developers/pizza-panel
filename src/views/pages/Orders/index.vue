@@ -63,6 +63,8 @@ export default {
             if (value) {
                 this.currentIngd = this.pizza.ingredients
                 this.orderPizzas[0].pizzaId = value.id
+            } else {
+                this.$store.commit('orders/RESET_CALCULATED_ORDER')
             }
         },
 
@@ -95,17 +97,11 @@ export default {
             if (this.$v.$invalid) {
                 this.$v.$touch()
             } else {
-                this.$socket.client.emit('order', this.order)
-
-                this.$socket.client.on('order', order => {
-                    this.$store.commit('orders/CREATE_ORDER', order)
-                    this.$store.dispatch('addMessage', {
-                        message: 'created',
-                        type: 'success',
-                        locale: true
-                    })
-                })
-
+                console.log(this.orderPizzas)
+                this.$store.dispatch('orders/emitCreateOrder', Object.assign({}, this.order, {
+                        pizzas: this.orderPizzas
+                    }
+                ))
                 this.closeCreateDialog()
             }
         },
@@ -133,7 +129,6 @@ export default {
 
         openCreateDialog: function() {
             this.createDialog = true
-
         },
 
         closeCreateDialog: function() {

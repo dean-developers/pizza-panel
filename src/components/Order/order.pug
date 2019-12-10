@@ -1,16 +1,20 @@
 v-card.order
     .main-info
-        span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.orderId`)}}: {{order.id}}
-        span.order-status(:class="{'processing': order.status === 'processing'}") {{$vuetify.lang.t(`$vuetify.pages.Orders.order.states.${order.status}`)}}
-        v-icon(
+        span № {{order.orderId}}
+        span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.pizza`)}}: {{order.pizza.name}}
+        span(v-if="order.additionalIngredients.length") {{$vuetify.lang.t(`$vuetify.pages.Orders.order.additional`)}}: {{order.additionalIngredients.join(', ')}}
+        span.order-status(:class="{'processing': order.order.status === 'processing'}") {{$vuetify.lang.t(`$vuetify.pages.Orders.order.states.${order.order.status}`)}}
+        v-icon.open-details(
             @click="showDetails = !showDetails"
             small
-        ).open-details {{detailsIcon}}
+        ) {{detailsIcon}}
+        span.timer(:class="{'old-order': !isNewOrder, 'new-order': isNewOrder}") {{timeAfterCreate}}
 
     .details(v-if="showDetails")
-        span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.name`)}}: {{order.client.name}}
-        span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.phone`)}}: {{order.client.phone}}
-        span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.createdAt`)}}: {{order.createdAt | formatDate}}
+        span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.name`)}}: {{order.order.client.name}}
+        span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.phone`)}}: {{order.order.client.phone}}
+        span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.createdAt`)}}: {{order.order.createdAt | formatDate}}
+        span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.price`)}}: {{order.sum}}
         .actions
             v-icon.delete mdi-delete
             v-icon.edit mdi-pencil
