@@ -11,6 +11,11 @@ export default {
         state.orders.unshift(order[0])
     },
 
+    DELETE_ORDER: (state, order) => {
+        const orderIndex = state.orders.findIndex(it => it.id === order.id)
+        state.orders.splice(orderIndex, 1)
+    },
+
     SET_PIZZAS: (state, pizzas) => {
         state.pizzas = pizzas
     },

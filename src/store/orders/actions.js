@@ -50,5 +50,26 @@ export default {
                 type: 'error'
             }, { root: true })
         })
+    },
+
+    deleteOrder: async({ commit, dispatch }, orderId) => {
+        await http({
+            url: `order/${orderId}`,
+            method: 'delete'
+        }).then(res => {
+            if (res.data) {
+                console.log(res.data)
+                commit('DELETE_ORDER', res.data[0])
+                dispatch('addMessage', {
+                    message: 'orderDeleted',
+                    type: 'error'
+                }, { root: true })
+            }
+        }).catch(err => {
+            dispatch('addMessage', {
+                message: err.message,
+                type: 'error'
+            }, { root: true })
+        })
     }
 }

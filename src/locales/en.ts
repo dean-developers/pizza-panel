@@ -143,7 +143,8 @@ export default {
     messages: {
         error: {
             incorrectLoginOrPassword: 'Email or password incorrect',
-            pizzaDeleted: 'Pizza was deleted from menu'
+            pizzaDeleted: 'Pizza was deleted from menu',
+            orderDeleted: 'Order was deleted from history'
         },
         success: {
             login: 'Success login',

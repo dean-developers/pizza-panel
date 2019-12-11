@@ -141,7 +141,8 @@ export default {
     messages: {
         error: {
             incorrectLoginOrPassword: 'Невірний логін або пароль',
-            pizzaDeleted: 'Піццу видалено з меню'
+            pizzaDeleted: 'Піццу видалено з меню',
+            orderDeleted: 'Замовлення було видалено з історії'
         },
         success: {
             login: 'Успішний вхід',

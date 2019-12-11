@@ -16,5 +16,5 @@ v-card.order
         span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.createdAt`)}}: {{order.order.createdAt | formatDate}}
         span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.price`)}}: {{order.sum}}
         .actions
-            v-icon.delete mdi-delete
+            v-icon(@click="deleteOrder(order.orderId)").delete mdi-delete
             v-icon.edit mdi-pencil

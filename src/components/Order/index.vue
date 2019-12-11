@@ -49,6 +49,10 @@ export default {
             }
 
             return value
+        },
+
+        deleteOrder: async function(orderId) {
+            await this.$store.dispatch('orders/deleteOrder', orderId)
         }
     },
 }
