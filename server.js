@@ -6,7 +6,7 @@ let app = express();
 app.use(serveStatic(__dirname + "/dist"));
 
 app.get('/*', function(req, res) {
-	res.render('index');
+	return res.render('index.html');
 });
 
 const port = process.env.PORT || 8080;
