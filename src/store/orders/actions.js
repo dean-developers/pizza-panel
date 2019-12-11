@@ -58,7 +58,6 @@ export default {
             method: 'delete'
         }).then(res => {
             if (res.data) {
-                console.log(res.data)
                 commit('DELETE_ORDER', res.data[0])
                 dispatch('addMessage', {
                     message: 'orderDeleted',
