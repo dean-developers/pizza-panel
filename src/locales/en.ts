@@ -9,7 +9,7 @@ export default {
     },
     modals: {
         delete: {
-            text: 'Are you really want to delete item from menu?'
+            text: 'Are you really want to delete item ?'
         }
     },
     autocomplete: {
@@ -57,13 +57,16 @@ export default {
                 required: 'Choose an ingredients'
             },
             price: {
-                required: 'Fill a price'
+                required: 'Fill a price',
+                numeric: 'Incorrect value'
             },
             weight: {
-                required: 'Fill a weight'
+                required: 'Fill a weight',
+                numeric: 'Incorrect value'
             },
             size: {
-                required: 'Fill a diameter'
+                required: 'Fill a diameter',
+                numeric: 'Incorrect value'
             }
         }
     },
@@ -137,11 +140,13 @@ export default {
         settings: 'Settings',
         edit: 'Edit pizza',
         create: 'New pizza',
-        logout: "Log out"
+        logout: 'Log out',
+        404: 'Page not found'
     },
 
     messages: {
         error: {
+            noSuchUser: 'Not authorized',
             incorrectLoginOrPassword: 'Email or password incorrect',
             pizzaDeleted: 'Pizza was deleted from menu',
             orderDeleted: 'Order was deleted from history'

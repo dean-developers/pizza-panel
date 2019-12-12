@@ -9,7 +9,7 @@ export default {
     },
     modals: {
         delete: {
-            text: 'Ви дійсно хочете видалити запис з меню?'
+            text: 'Ви дійсно хочете видалити запис?'
         }
     },
     autocomplete: {
@@ -57,13 +57,16 @@ export default {
                 required: 'Оберіть інгрідієнти'
             },
             price: {
-                required: 'Вкажіть ціну'
+                required: 'Вкажіть ціну',
+                numeric: 'Некорректне значення'
             },
             weight: {
-                required: 'Вкажіть вагу'
+                required: 'Вкажіть вагу',
+                numeric: 'Некорректне значення'
             },
             size: {
-                required: 'Вкажіть діаметр'
+                required: 'Вкажіть діаметр',
+                numeric: 'Некорректне значення'
             }
         }
     },
@@ -136,13 +139,15 @@ export default {
         settings: 'Налаштування',
         edit: 'Редагування піцци',
         create: 'Нова піцца',
-        logout: "Вийти"
+        logout: 'Вийти',
+        404: 'Сторінку не знайдено'
     },
     messages: {
         error: {
             incorrectLoginOrPassword: 'Невірний логін або пароль',
             pizzaDeleted: 'Піццу видалено з меню',
-            orderDeleted: 'Замовлення було видалено з історії'
+            orderDeleted: 'Замовлення було видалено з історії',
+            noSuchUser: 'Не авторизовано',
         },
         success: {
             login: 'Успішний вхід',

@@ -1,4 +1,20 @@
 v-card.order
+    v-dialog(
+        v-model="deleteDialog"
+        max-width="330"
+    )
+        v-card.remove-card
+            form(name="removeFeed" @submit.prevent="deleteOrder()")
+                v-card-title {{$vuetify.lang.t(`$vuetify.modals.delete.text`)}}
+                .delete-actions
+                    v-btn(
+                        @click.native="deleteDialog=false"
+                        color="red"
+                    ).white--text {{$vuetify.lang.t(`$vuetify.buttons.cancel`)}}
+                    v-btn(
+                        type="submit"
+                        color="primary"
+                    ) {{$vuetify.lang.t(`$vuetify.buttons.delete`)}}
     .main-info
         span № {{order.orderId}}
         span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.pizza`)}}: {{order.pizza.name}}
@@ -16,5 +32,5 @@ v-card.order
         span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.createdAt`)}}: {{order.order.createdAt | formatDate}}
         span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.price`)}}: {{order.sum}}
         .actions
-            v-icon(@click="deleteOrder(order.orderId)").delete mdi-delete
+            v-icon(@click="deleteDialog = true").delete mdi-delete
             v-icon.edit mdi-pencil

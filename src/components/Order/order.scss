@@ -61,6 +61,16 @@ $greenColor: #00C853;
     }
 }
 
+.remove-card {
+    text-align: center;
+    padding: 15px;
+
+    .delete-actions {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
 .processing {
     color: $orangeColor
 }

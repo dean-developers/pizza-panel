@@ -45,7 +45,7 @@
                     span.mark &#9737 {{$vuetify.lang.t(`$vuetify.pages.Menu.size`)}}:
                     span {{ item.size }}
             v-divider
-            v-card-actions.actions
+            v-card-actions.actions(v-if="type === 'admin'")
                 v-btn(
                     @click="openDeleteDialog(item)"
                     color="red"
@@ -65,5 +65,5 @@
                     v-icon(left) mdi-pencil
                     span {{$vuetify.lang.t(`$vuetify.buttons.edit`)}}
     .plus
-        v-btn(to="/menu/pizza/create" fab color="primary").mx-2
+        v-btn(to="/menu/pizza/create" fab color="primary" v-if="type === 'admin'").mx-2
             v-icon(dark large) mdi-plus

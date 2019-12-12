@@ -28,7 +28,7 @@ export const constantRouterMap = [
                 beforeEnter: isAuth,
                 component: () => import('@/views/pages/Menu'),
                 meta: {
-                    permission: ['admin']
+                    permission: ['admin', 'operator']
                 }
             },
             {
@@ -64,7 +64,7 @@ export const constantRouterMap = [
                 beforeEnter: isAuth,
                 component: () => import('@/views/pages/Settings'),
                 meta: {
-                    permission: ['admin', 'operator']
+                    permission: ['admin', 'operator', 'driver']
                 }
             },
             {

@@ -2,7 +2,7 @@
 <style lang="scss" src="./app.scss"></style>
 
 <script>
-    import {mapState} from 'vuex'
+    import { mapState, mapGetters } from 'vuex'
 
     export default {
     data: () => ({
@@ -30,8 +30,8 @@
     },
 
     computed: {
+        ...mapGetters(['type']),
         ...mapState({
-            type: state => state.app.type,
             user: state => state.app.user,
             theme: state => state.app.theme
         }),
@@ -60,7 +60,7 @@
                     name: 'menu',
                     icon: 'mdi-view-list',
                     to: '/menu',
-                    permissions: ['admin']
+                    permissions: ['admin', 'operator']
                 },
                 {
                     name: 'users',
@@ -72,7 +72,7 @@
                     name: 'settings',
                     icon: 'mdi-settings',
                     to: '/settings',
-                    permissions: ['admin', 'operator']
+                    permissions: ['admin', 'operator', 'driver']
                 },
 
             ]

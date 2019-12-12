@@ -14,7 +14,7 @@ export default {
         showDetails: false,
         timeAfterCreate: '00:00',
         interval: null,
-
+        deleteDialog: false
     }),
 
     computed: {
@@ -51,8 +51,8 @@ export default {
             return value
         },
 
-        deleteOrder: async function(orderId) {
-            await this.$store.dispatch('orders/deleteOrder', orderId)
+        deleteOrder: async function() {
+            await this.$store.dispatch('orders/deleteOrder', this.order.orderId)
         }
     },
 }

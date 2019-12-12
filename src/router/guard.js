@@ -2,7 +2,8 @@ import store from '@/store'
 
 const rolesRedirectPages = {
     admin: '/users',
-    operator: '/orders'
+    operator: '/orders',
+    driver: '/settings'
 }
 
 export async function isAuth(to, from, next) {

@@ -2,7 +2,7 @@
 <style lang="scss" src="./menu.scss" scoped></style>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
     data: () => ({
         pizza: null,
@@ -14,6 +14,7 @@ export default {
     },
 
     computed: {
+        ...mapGetters(['type']),
         ...mapState({
             pizzas: state => state.menu.pizzas
         }),

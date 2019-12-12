@@ -9,7 +9,7 @@ export default {
     },
     modals: {
         delete: {
-            text: 'Вы действительно хотите удалить запись из меню?'
+            text: 'Вы действительно хотите удалить запись?'
         }
     },
     autocomplete: {
@@ -54,16 +54,19 @@ export default {
                 required: 'Введите название пиццы',
             },
             ingredients: {
-                required: 'Выберите ингредиенты'
+                required: 'Выберите ингредиенты',
             },
             price: {
-                required: 'Укажите цену'
+                required: 'Укажите цену',
+                numeric: 'Некорректное значение'
             },
             weight: {
-                required: 'Укажите вес'
+                required: 'Укажите вес',
+                numeric: 'Некорректное значение'
             },
             size: {
-                required: 'Укажите диаметр'
+                required: 'Укажите диаметр',
+                numeric: 'Некорректное значение'
             }
         }
     },
@@ -137,13 +140,15 @@ export default {
         settings: 'Настройки',
         edit: 'Редактирование пиццы',
         create: 'Новая пицца',
-        logout: "Выйти"
+        logout: 'Выйти',
+        404: 'Страница не найдена'
     },
     messages: {
         error: {
             incorrectLoginOrPassword: 'Неверный email или пароль',
             pizzaDeleted: 'Пицца удалена из меню',
-            orderDeleted: 'Заказ был удален из истории'
+            orderDeleted: 'Заказ был удален из истории',
+            noSuchUser: 'Не авторизировано',
         },
         success: {
             login: 'Успешный вход',

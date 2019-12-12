@@ -35,14 +35,16 @@ export default {
                 commit('SET_USER', res.data)
                 commit('SET_TYPE', res.data.type)
             }
-        }).catch(error => {
-            commit('SET_USER', null)
-            commit('REMOVE_TOKEN')
-            dispatch('addMessage', {
-                message: error.message,
-                type: 'error',
-                locale: true
-            })
+        }).catch(err => {
+            if (err.response && err.response.status === 401) {
+                commit('SET_USER', null)
+                commit('REMOVE_TOKEN')
+                dispatch('addMessage', {
+                    message: 'noSuchUser',
+                    type: 'error',
+                    locale: true
+                })
+            }
         })
     },
 
