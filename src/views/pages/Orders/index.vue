@@ -20,14 +20,7 @@ export default {
             street: null,
             houseNumber: null
         },
-        pizza: null,
-        orderPizzas: [
-            {
-                pizzaId: null,
-                ingredients: []
-            }
-        ],
-        currentIngd: [],
+        orderPizzas: []
     }),
     validations: {
         order: {
@@ -58,32 +51,14 @@ export default {
         await this.$store.dispatch('menu/getAdditionalIngredients')
     },
 
-    watch: {
-        pizza: function(value) {
-            if (value) {
-                this.currentIngd = this.pizza.ingredients
-                this.orderPizzas[0].pizzaId = value.id
-            } else {
-                this.$store.commit('orders/RESET_CALCULATED_ORDER')
-            }
-        },
-
-        currentIngd: function(newIngredients) {
-            if (newIngredients) {
-                this.orderPizzas[0].ingredients = newIngredients.map('id').filter(it => !!it)
-            }
-
-        }
-    },
-
     computed: {
         ...mapGetters(['type']),
         ...mapState({
             orders: state => state.orders.orders,
             cities: state => state.orders.cities,
-            pizzas: state => state.menu.pizzas,
             ingredients: state => state.menu.additionalIngredients,
             calculatedOrder: state => state.orders.calculatedOrder,
+            loading: state => state.orders.loading
         }),
         totalPrice: function () {
             return this.calculatedOrder &&
@@ -98,7 +73,7 @@ export default {
                 this.$v.$touch()
             } else {
                 this.$store.dispatch('orders/emitCreateOrder', Object.assign({}, this.order, {
-                        pizzas: this.orderPizzas
+                        pizzas: this.orderPizzas.map('pizzaDetails')
                     }
                 ))
                 this.closeCreateDialog()
@@ -106,24 +81,17 @@ export default {
         },
 
         calculateOrder: async function() {
-            await this.$store.dispatch('orders/calculateOrder', this.orderPizzas)
+            await this.$store.dispatch('orders/calculateOrder', this.orderPizzas.map('pizzaDetails'))
         },
 
-        disabledIngredient: function(ingredient) {
-            return !ingredient.hasOwnProperty('name')
-        },
+        addPizzaToOrder: function(data) {
+            const index = this.orderPizzas.findIndex(it => it.index === data.index);
 
-        removeIngredient(item) {
-            this.currentIngd.splice(this.currentIngd.indexOf(item), 1)
-            this.currentIngd = [...this.currentIngd]
-        },
+            if (index !== -1) {
+                return this.orderPizzas.splice(index, 1, data)
+            }
 
-        addPizzaToOrder: function() {
-            this.orderPizzas.push({
-                id: [],
-                ingredients: [],
-            })
-            this.pizzasCount++
+            this.orderPizzas.push(data)
         },
 
         openCreateDialog: function() {
@@ -136,12 +104,20 @@ export default {
         },
 
         reset: function () {
+            this.pizzasCount = 1
+
             Object.keys(this.order).forEach(it => {
                 this.order[it] = null
-            })
+            });
 
-            this.pizza = null
-            this.currentIngd = null
+            this.orderPizzas = [];
+
+            (Object.keys(this.$refs) || []).forEach(it => {
+                if (this.$refs[it][0] && ~it.indexOf('pizza')) {
+                    this.$refs[it][0].pizza = null
+                    this.$refs[it][0].clear()
+                }
+            })
 
             this.$store.commit('orders/RESET_CALCULATED_ORDER')
 
