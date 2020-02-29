@@ -1,12 +1,12 @@
 v-container
     .create-button
-        v-btn.mx-2(fab color="primary")
-            v-icon(@click="createDialog = true" dark large) mdi-plus
+        v-btn(@click="createDialog = true" color="primary" fab)
+            v-icon mdi-plus
     .orders
         .empty-state(v-if="!orders.length")
             v-icon(size="100px") mdi-clock-outline
             p {{ $vuetify.lang.t(`$vuetify.pages.Orders.noOrders`) }}
-        order(v-for="(item, index) in orders" :order="item" :key="item.id")
+        v-order(v-for="(item, index) in orders" :order="item" :key="item.id")
     .create-order
         include ./mixins/create-order
 

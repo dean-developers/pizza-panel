@@ -14,10 +14,20 @@ const sugar = require('sugar')()
 import alerts from './components/Alerts/alerts'
 import Locale from './components/Locale/locale'
 import Map from './components/Map/map'
-import Order from './components/Order'
-import OrderPizza from './components/OrderPizza'
 
 Vue.config.productionTip = false
+
+import { Icon }  from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
+// this part resolve an issue where the markers would not appear
+delete Icon.Default.prototype._getIconUrl;
+
+Icon.Default.mergeOptions({
+    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
 
 const socket = io(process.env.VUE_APP_SERVER)
 Vue.use(VueSocketIOExt, socket, { store })
@@ -35,9 +45,6 @@ Vue.filter('formatDate', function(value) {
 Vue.component('v-locale', Locale)
 Vue.component('alerts', alerts)
 Vue.component('v-map', Map)
-
-Vue.component('order', Order)
-Vue.component('v-pizza', OrderPizza)
 // ===================================
 
 new Vue({

@@ -1,4 +1,4 @@
-<template land="pug" src="./order-pizza.pug"></template>
+<template lang="pug" src="./order-pizza.pug"></template>
 
 <script>
 import { mapState } from 'vuex'
@@ -7,6 +7,10 @@ export default {
         index: {
             type: Number,
             defaultValue: 0
+        },
+        isModalOpened: {
+            type: Boolean,
+            default: true
         }
     },
     data: () => ({
@@ -24,6 +28,14 @@ export default {
         }),
     },
     watch: {
+        isModalOpened() {
+            if (!this.isModalOpened) {
+                this.$nextTick(() => {
+                    this.pizza = null;
+                    this.clear();
+                })
+            }
+        },
         pizza: function(value) {
             if (value) {
                 this.chosenIngredients = this.pizza.ingredients
@@ -43,7 +55,6 @@ export default {
                 if (this.pizza) {
                     this.emitPizzaDetails()
                 }
-
             },
 
             deep: true

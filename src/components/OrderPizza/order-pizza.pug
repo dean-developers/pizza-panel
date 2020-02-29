@@ -1,5 +1,5 @@
 .pizza-order
-    v-autocomplete(
+    v-select(
         :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.choosePizza`)"
         :no-data-text="$vuetify.lang.t('$vuetify.autocomplete.noData')"
         :items="pizzas"
@@ -12,6 +12,7 @@
         outlined
     )
     v-combobox(
+        id="ingredientsList"
         :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.additionalIngredients`)"
         :no-data-text="$vuetify.lang.t('$vuetify.autocomplete.noData')"
         :items="ingredients"

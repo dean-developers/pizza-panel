@@ -3,12 +3,18 @@
 
 <script>
 import {mapGetters, mapState} from 'vuex'
+import Order from '@/components/Order'
+import OrderPizza from '@/components/OrderPizza'
 import { validationMixin } from 'vuelidate'
 import validate from '@/mixins/validate'
 import { required } from 'vuelidate/lib/validators'
 
 export default {
     mixins: [validationMixin, validate],
+    components: {
+        'v-order': Order,
+        'v-pizza': OrderPizza
+    },
     data: () => ({
         createDialog: false,
         pizzasCount: 1,
@@ -109,15 +115,6 @@ export default {
             Object.keys(this.order).forEach(it => {
                 this.order[it] = null
             });
-
-            this.orderPizzas = [];
-
-            (Object.keys(this.$refs) || []).forEach(it => {
-                if (this.$refs[it][0] && ~it.indexOf('pizza')) {
-                    this.$refs[it][0].pizza = null
-                    this.$refs[it][0].clear()
-                }
-            })
 
             this.$store.commit('orders/RESET_CALCULATED_ORDER')
 
