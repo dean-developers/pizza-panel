@@ -7,7 +7,7 @@ import baseLayout from '@/views/layouts/baseLayout'
 import { isAuth, isNotAuth, getUser } from './guard'
 Vue.use(Router)
 
-export const constantRouterMap = [
+const routes = [
     {
         path: '',
         redirect: '/orders',
@@ -31,24 +31,22 @@ export const constantRouterMap = [
                     permission: ['admin', 'operator']
                 }
             },
-            {
-                path: 'menu/pizza/create',
-                name: 'create',
+            ...[{
+                    name: 'create',
+                    path: '/menu/pizza/create'
+                },
+                {
+                    name: 'edit',
+                    path: 'menu/pizza/:id/edit'
+                }].map(({ name, path }) => ({
+                name,
+                path,
                 beforeEnter: isAuth,
                 component: () => import('@/views/pages/MenuEditor'),
                 meta: {
                     permission: ['admin']
                 }
-            },
-            {
-                path: 'menu/pizza/:id/edit',
-                name: 'edit',
-                beforeEnter: isAuth,
-                component: () => import('@/views/pages/MenuEditor'),
-                meta: {
-                    permission: ['admin']
-                }
-            },
+            })),
             {
                 path: 'users',
                 name: 'users',
@@ -89,7 +87,6 @@ export const constantRouterMap = [
                     permission: ['admin', 'operator']
                 }
             }
-
         ]
     },
     { path: '*', redirect: '/404', hidden: true }
@@ -98,5 +95,5 @@ export const constantRouterMap = [
 export default new Router({
     mode: 'history',
     scrollBehavior: () => ({ y: 0 }),
-    routes: constantRouterMap
+    routes
 })

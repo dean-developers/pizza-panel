@@ -56,7 +56,12 @@ v-dialog(v-model="createDialog" persistent max-width="600px")
             v-card-text.order-details
                 v-container(v-for="i in pizzasCount" :key="i")
                     v-card-title(v-if="pizzasCount > 1").order-number № {{i}}
-                    v-pizza(:index="i" :ref="`pizza_${i}`" @addPizzaToOrder="addPizzaToOrder($event)")
+                    v-pizza(
+                        :isModalOpened="createDialog"
+                        :index="i"
+                        :ref="`pizza_${i}`"
+                        @addPizzaToOrder="addPizzaToOrder($event)"
+                    )
                     v-divider
                 .add-order-wrapper(:class="{'justify-right': !totalPrice}")
                     span(v-show="totalPrice").add-order-wrapper__total-price {{$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.totalPrice`)}}: {{totalPrice}} &#8372

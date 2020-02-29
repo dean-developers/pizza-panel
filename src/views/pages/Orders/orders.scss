@@ -92,6 +92,10 @@
 
 .order-create-buttons {
     margin-right: calc(5% - 5px);
+
+    .v-btn:first-child {
+        margin-right: 10px;
+    }
 }
 
 .orders-middle {
