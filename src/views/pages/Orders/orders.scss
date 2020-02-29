@@ -1,22 +1,30 @@
-.create-button {
+.page-actions {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     right: 20px;
     top: 80px;
     cursor: pointer;
     z-index: 4;
+
+    .button-wrapper:last-child {
+        margin-top: 10px;
+    }
 }
 
 .orders {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 2;
-    max-width: 380px;
-    height: calc(100% - 56px);
     width: 100%;
-
+    height: 300px;
     position: absolute;
-    left: 0;
     bottom: 0;
+    left: 0;
     box-shadow: 0 10px 15px 0 #424242;
-    overflow-y: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .order-details {
@@ -118,6 +126,7 @@
 }
 
 ::v-deep .page-map {
+    z-index: 1;
     position: absolute;
 
 }

@@ -26,7 +26,7 @@ v-card.order
         ) {{detailsIcon}}
         span.timer(:class="{'old-order': !isNewOrder, 'new-order': isNewOrder}") {{timeAfterCreate}}
 
-    .details(v-if="showDetails")
+    .details
         span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.name`)}}: {{order.order.client.name}}
         span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.phone`)}}: {{order.order.client.phone}}
         span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.createdAt`)}}: {{order.order.createdAt | formatDate}}

@@ -29,28 +29,16 @@ export default {
     created: function() {
         const now = new Date()
         const created = new Date(this.order.createdAt)
+
         let timestamp = new Date(Math.abs(now - created))
-        let seconds = timestamp.getSeconds()
+
         this.interval = setInterval(() => {
-            let minutes = timestamp.getMinutes()
-            ++seconds
             timestamp =  new Date(timestamp.getTime() + 1000)
-            this.timeAfterCreate = `${this.checkTime(minutes)}:${this.checkTime(seconds % 60)}`
+            this.timeAfterCreate = timestamp.format('{mm}:{ss}')
         }, 1000)
     },
 
-    mounted: function() {
-    },
-
     methods: {
-        checkTime(value) {
-            if (parseInt(value) <= 9) {
-                return `0${value}`
-            }
-
-            return value
-        },
-
         deleteOrder: async function() {
             await this.$store.dispatch('orders/deleteOrder', this.order.orderId)
         }
