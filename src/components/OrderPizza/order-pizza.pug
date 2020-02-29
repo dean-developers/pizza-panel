@@ -1,0 +1,39 @@
+.pizza-order
+    v-autocomplete(
+        :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.choosePizza`)"
+        :no-data-text="$vuetify.lang.t('$vuetify.autocomplete.noData')"
+        :items="pizzas"
+        v-model="pizza"
+        return-object
+        prepend-icon="mdi-pizza"
+        item-text="name"
+        clearable
+        @click:clear="clear()"
+        outlined
+    )
+    v-combobox(
+        :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.additionalIngredients`)"
+        :no-data-text="$vuetify.lang.t('$vuetify.autocomplete.noData')"
+        :items="ingredients"
+        item-text="name"
+        return-object
+        v-model="chosenIngredients"
+        prepend-icon="mdi-format-list-bulleted"
+        :disabled="!pizza"
+        clearable
+        multiple
+        chips
+        solo
+    )
+        template(v-slot:selection="{ attrs, item, select, selected }")
+            v-chip(
+                :disabled="disabledIngredient(item)"
+                :close="!disabledIngredient(item)"
+                v-bind="attrs"
+                :input-value="selected"
+                @click="select"
+                @click:close="removeIngredient(item)"
+                color="primary"
+                small
+            )
+                strong {{ item && item.name ? item.name : item}}

@@ -34,6 +34,7 @@ export default {
     },
 
     calculateOrder: async ({ commit, dispatch }, orderPizzas) => {
+        commit('SET_LOADING', true)
         await http({
             url: 'order/calculate',
             method: 'post',
@@ -44,6 +45,8 @@ export default {
             if (res.data) {
                 commit('SET_CALCULATED_ORDER', res.data)
             }
+
+            commit('SET_LOADING', false)
         }).catch(err => {
             dispatch('addMessage', {
                 message: err.message,

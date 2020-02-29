@@ -77,11 +77,9 @@ export default {
             } else {
                 this.pizza.ingredients = this.pizza.ingredients.map(it => it.name || it)
 
-                if (this.editing) {
-                    await this.$store.dispatch('menu/editPizza', this.pizza)
-                } else {
-                    await this.$store.dispatch('menu/createPizza', this.pizza)
-                }
+                const action = this.editing ? 'editPizza' : 'createPizza'
+
+                await this.$store.dispatch(`menu/${action}`, this.pizza)
 
                 this.reset()
             }

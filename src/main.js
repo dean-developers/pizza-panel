@@ -15,11 +15,12 @@ import alerts from './components/Alerts/alerts'
 import Locale from './components/Locale/locale'
 import Map from './components/Map/map'
 import Order from './components/Order'
+import OrderPizza from './components/OrderPizza'
 
 Vue.config.productionTip = false
 
-const socket = io(process.env.VUE_APP_SERVER);
-Vue.use(VueSocketIOExt, socket, { store });
+const socket = io(process.env.VUE_APP_SERVER)
+Vue.use(VueSocketIOExt, socket, { store })
 Vue.use(Vuelidate)
 Vue.use(VueMask)
 
@@ -36,6 +37,7 @@ Vue.component('alerts', alerts)
 Vue.component('v-map', Map)
 
 Vue.component('order', Order)
+Vue.component('v-pizza', OrderPizza)
 // ===================================
 
 new Vue({

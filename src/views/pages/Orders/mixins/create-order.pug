@@ -56,69 +56,32 @@ v-dialog(v-model="createDialog" persistent max-width="600px")
             v-card-text.order-details
                 v-container(v-for="i in pizzasCount" :key="i")
                     v-card-title(v-if="pizzasCount > 1").order-number № {{i}}
-                    v-autocomplete(
-                        :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.choosePizza`)"
-                        :no-data-text="$vuetify.lang.t('$vuetify.autocomplete.noData')"
-                        :items="pizzas"
-                        v-model="pizza"
-                        return-object
-                        prepend-icon="mdi-pizza"
-                        item-text="name"
-                        clearable
-                        @click:clear="currentIngd = []"
-                        outlined
-                    )
-                    v-combobox(
-                        :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.additionalIngredients`)"
-                        :items="ingredients"
-                        item-text="name"
-                        return-object
-                        v-model="currentIngd"
-                        prepend-icon="mdi-format-list-bulleted"
-                        :disabled="!pizza"
-                        clearable
-                        multiple
-                        chips
-                        solo
-                    )
-                        template(v-slot:selection="{ attrs, item, select, selected }")
-                            v-chip(
-                                :disabled="disabledIngredient(item)"
-                                :close="!disabledIngredient(item)"
-                                v-bind="attrs"
-                                :input-value="selected"
-                                @click="select"
-                                @click:close="removeIngredient(item)"
-                                color="primary"
-                                small
-                            )
-                                strong {{ item && item.name ? item.name : item}}
-
+                    v-pizza(:index="i" :ref="`pizza_${i}`" @addPizzaToOrder="addPizzaToOrder($event)")
                     v-divider
-                .add-order-wrapper(:class="{'justify-right': !totalPrice || !pizza}")
-                    span(v-show="totalPrice && !!pizza").add-order-wrapper__total-price {{$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.totalPrice`)}}: {{totalPrice}} &#8372
-                    //.add-order-wrapper__actions
-                    //    v-btn(
-                    //        v-if="pizzasCount > 1"
-                    //        @click="pizzasCount--"
-                    //        color="red"
-                    //        outlined
-                    //        rounded
-                    //        icon
-                    //    )
-                    //        v-icon mdi-minus
-                    //    v-btn.add-order-btn(
-                    //        @click="addPizzaToOrder()"
-                    //        color="primary"
-                    //        outlined
-                    //        rounded
-                    //    )
-                    //        v-icon mdi-plus
-                    //        span {{$vuetify.lang.t(`$vuetify.buttons.add`)}}
+                .add-order-wrapper(:class="{'justify-right': !totalPrice}")
+                    span(v-show="totalPrice").add-order-wrapper__total-price {{$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.totalPrice`)}}: {{totalPrice}} &#8372
+                    .add-order-wrapper__actions
+                        v-btn(
+                            v-if="pizzasCount > 1"
+                            @click="pizzasCount--"
+                            color="red"
+                            outlined
+                            rounded
+                            icon
+                        )
+                            v-icon mdi-minus
+                        v-btn.add-order-btn(
+                            @click="pizzasCount++"
+                            color="primary"
+                            outlined
+                            rounded
+                        )
+                            v-icon mdi-plus
+                            span {{$vuetify.lang.t(`$vuetify.buttons.add`)}}
 
             v-card-actions
                 v-btn.cancel-button(color="red" @click="closeCreateDialog()").white--text {{$vuetify.lang.t(`$vuetify.buttons.cancel`)}}
                 v-spacer
                 .order-create-buttons
-                    v-btn(color="orange" @click="calculateOrder()" :disabled="!pizza") {{$vuetify.lang.t(`$vuetify.buttons.calculate`)}}
+                    v-btn(color="orange" @click="calculateOrder()" :disabled="!orderPizzas[0]" :loading="loading") {{$vuetify.lang.t(`$vuetify.buttons.calculate`)}}
                     v-btn(color="primary" type="submit" :disabled="!calculatedOrder") {{$vuetify.lang.t(`$vuetify.buttons.create`)}}
