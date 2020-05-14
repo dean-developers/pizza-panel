@@ -36,7 +36,7 @@ Vue.use(VueMask)
 
 // ============= Filters =============
 Vue.filter('formatDate', function(value) {
-    return new Date(value).format('%H:%M:%S')
+    return new Date(value).format('{dd}/{mm}/{yyyy} - {hh}:{mm}')
 })
 
 // ===================================

@@ -1,16 +1,20 @@
 v-container
-    .create-button
-        v-btn(@click="createDialog = true" color="primary" fab)
-            v-icon mdi-plus
-    .orders
+    .page-actions
+        .button-wrapper
+            v-btn(@click="createDialog = true" color="primary" fab)
+                v-icon mdi-plus
+        .button-wrapper
+            v-btn(@click="toggleOrdersBlock" :color="showOrdersBlock ? 'grey' : 'primary'" fab)
+                v-icon mdi-view-list
+    .orders(v-if="showOrdersBlock")
         .empty-state(v-if="!orders.length")
             v-icon(size="100px") mdi-clock-outline
             p {{ $vuetify.lang.t(`$vuetify.pages.Orders.noOrders`) }}
         v-order(v-for="(item, index) in orders" :order="item" :key="item.id")
     .create-order
         include ./mixins/create-order
-
     v-map.page-map
+
 
 
 

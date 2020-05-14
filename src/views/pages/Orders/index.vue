@@ -3,8 +3,8 @@
 
 <script>
 import {mapGetters, mapState} from 'vuex'
-import Order from '@/components/Order'
-import OrderPizza from '@/components/OrderPizza'
+import Order from './Order'
+import OrderPizza from './OrderPizza'
 import { validationMixin } from 'vuelidate'
 import validate from '@/mixins/validate'
 import { required } from 'vuelidate/lib/validators'
@@ -26,7 +26,8 @@ export default {
             street: null,
             houseNumber: null
         },
-        orderPizzas: []
+        orderPizzas: [],
+        showOrdersBlock: false
     }),
     validations: {
         order: {
@@ -74,6 +75,9 @@ export default {
     },
 
     methods: {
+        toggleOrdersBlock() {
+            this.showOrdersBlock = !this.showOrdersBlock;
+        },
         create: function() {
             if (this.$v.$invalid) {
                 this.$v.$touch()

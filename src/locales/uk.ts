@@ -5,7 +5,9 @@ export default {
         uk: 'Українська'
     },
     roles: {
-        operator: "Оператор"
+        admin: 'Адміністратор',
+        operator: 'Оператор',
+        driver: 'Кур\'єр'
     },
     modals: {
         delete: {
@@ -123,7 +125,9 @@ export default {
                 type: 'Тип',
                 status: 'Статус',
                 createdAt: 'В системі з',
-                actions: 'Дії'
+                actions: 'Дії',
+                online: 'Онлайн',
+                offline: 'Офлайн'
             }
         },
         404: {

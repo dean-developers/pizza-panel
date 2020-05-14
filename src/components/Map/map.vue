@@ -5,8 +5,8 @@
         position: absolute;
         right: 0;
         padding: unset;
-        width: calc(100% - 380px);
-        height: 100%;
+        width: 100%;
+        height: calc(100vh - 64px);
         margin: 0 auto;
         top: 64px;
         z-index: 1;

@@ -7,5 +7,12 @@
             hide-default-footer
             class="table"
         )
+            template(v-slot:body="{ items }")
+                tbody
+                    tr(v-for="item in items")
+                        td {{ item.login }}
+                        td {{ $vuetify.lang.t(`$vuetify.roles.${item.type}`) }}
+                        td(:class="item.status") {{ $vuetify.lang.t(`$vuetify.pages.Users.table.${item.status}`) }}
+                        td {{ item.createdAt | formatDate }}
 
 
