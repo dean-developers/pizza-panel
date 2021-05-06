@@ -39,9 +39,6 @@ export default {
         }, 1000)
     },
 
-    mounted: function() {
-    },
-
     methods: {
         checkTime(value) {
             if (parseInt(value) <= 9) {

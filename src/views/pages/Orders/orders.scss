@@ -17,6 +17,7 @@
     bottom: 0;
     box-shadow: 0 10px 15px 0 #424242;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .order-details {
@@ -119,5 +120,8 @@
 
 ::v-deep .page-map {
     position: absolute;
+}
 
+.v-main__wrap {
+    overflow: hidden;
 }

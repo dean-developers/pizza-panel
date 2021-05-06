@@ -4,20 +4,20 @@ v-card.order
         max-width="330"
     )
         v-card.remove-card
-            form(name="removeFeed" @submit.prevent="deleteOrder()")
+            form(@submit.prevent="deleteOrder()")
                 v-card-title {{$vuetify.lang.t(`$vuetify.modals.delete.text`)}}
                 .delete-actions
-                    v-btn(
-                        @click.native="deleteDialog=false"
+                    v-btn.white--text(
+                        @click.native="deleteDialog = false"
                         color="red"
-                    ).white--text {{$vuetify.lang.t(`$vuetify.buttons.cancel`)}}
+                    ) {{$vuetify.lang.t(`$vuetify.buttons.cancel`)}}
                     v-btn(
                         type="submit"
                         color="primary"
                     ) {{$vuetify.lang.t(`$vuetify.buttons.delete`)}}
     .main-info
         span № {{order.orderId}}
-        span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.pizza`)}}: {{order.pizza.name}}
+        span {{$vuetify.lang.t(`$vuetify.pages.Orders.order.pizza`)}}: {{ order.pizza && order.pizza.name }}
         span(v-if="order.additionalIngredients.length") {{$vuetify.lang.t(`$vuetify.pages.Orders.order.additional`)}}: {{order.additionalIngredients.join(', ')}}
         span.order-status(:class="{'processing': order.order.status === 'processing'}") {{$vuetify.lang.t(`$vuetify.pages.Orders.order.states.${order.order.status}`)}}
         v-icon.open-details(

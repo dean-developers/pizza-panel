@@ -32,13 +32,16 @@ v-dialog(v-model="createDialog" persistent max-width="600px")
                         outlined
                     )
                     v-autocomplete(
+                        autocomplete="new-password"
+                        :value="order.cityName"
                         :no-data-text = "$vuetify.lang.t('$vuetify.autocomplete.noData')"
                         :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.cityName`)"
                         :error-messages="getValidateMessage('Orders', 'order.cityName', 'createOrder.cityName')"
-                        v-model="order.cityName"
+                        @change="onCityChange($event)"
                         :items="cities"
-                        item-text="name"
                         prepend-icon="mdi-city"
+                        item-text="name"
+                        return-object
                     )
                     .street
                         v-text-field(

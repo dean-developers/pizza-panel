@@ -2,7 +2,7 @@
 <style lang="scss" src="./orders.scss"></style>
 
 <script>
-import {mapGetters, mapState} from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Order from '@/components/Order'
 import OrderPizza from '@/components/OrderPizza'
 import { validationMixin } from 'vuelidate'
@@ -26,7 +26,8 @@ export default {
             street: null,
             houseNumber: null
         },
-        orderPizzas: []
+        orderPizzas: [],
+        coords: []
     }),
     validations: {
         order: {
@@ -45,16 +46,19 @@ export default {
         }
     },
 
-    created: async function() {
+    created() {
         this.$socket.client.emit('received')
 
         this.$socket.client.on('orders', (data) => {
+          console.log('Socket data: ', data);
             this.$store.commit('orders/SET_ORDERS', data)
         })
 
-        await this.$store.dispatch('orders/getCities')
-        await this.$store.dispatch('menu/getPizzas')
-        await this.$store.dispatch('menu/getAdditionalIngredients')
+        Promise.all([
+          this.$store.dispatch('orders/getCities'),
+          this.$store.dispatch('menu/getPizzas'),
+          this.$store.dispatch('menu/getAdditionalIngredients')
+        ]);
     },
 
     computed: {
@@ -67,8 +71,11 @@ export default {
             loading: state => state.orders.loading
         }),
         totalPrice: function () {
-            return this.calculatedOrder &&
-                this.calculatedOrder.map('sum')
+            if (!this.calculatedOrder) {
+                return 0;
+            }
+
+            return this.calculatedOrder.map('sum')
                     .reduce((a, b) => a + b)
         },
     },
@@ -77,13 +84,14 @@ export default {
         create: function() {
             if (this.$v.$invalid) {
                 this.$v.$touch()
-            } else {
-                this.$store.dispatch('orders/emitCreateOrder', Object.assign({}, this.order, {
-                        pizzas: this.orderPizzas.map('pizzaDetails')
-                    }
-                ))
-                this.closeCreateDialog()
+                return
             }
+
+            this.$store.dispatch('orders/emitCreateOrder', Object.assign({}, this.order, {
+                pizzas: this.orderPizzas.map('pizzaDetails')
+            }))
+
+            this.closeCreateDialog()
         },
 
         calculateOrder: async function() {
@@ -109,16 +117,24 @@ export default {
             this.reset()
         },
 
+        onCityChange(city) {
+            const { name, latitude, longitude } = city;
+            this.$set(this.order, 'cityName', name);
+            this.coords = [latitude, longitude];
+        },
+
         reset: function () {
             this.pizzasCount = 1
 
             Object.keys(this.order).forEach(it => {
-                this.order[it] = null
+                this.$set(this.order, it, null);
             });
 
             this.$store.commit('orders/RESET_CALCULATED_ORDER')
+            this.coords = [];
 
             this.$nextTick(() => { this.$v.$reset() })
+            console.log(this.order);
         }
     }
 }
