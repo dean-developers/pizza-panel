@@ -1,5 +1,6 @@
 import en from './en.ts';
-import ru from './ru.ts';
+// import ru from './ru.ts';
 import uk from './uk.ts';
+import pl from './pl.ts';
 
-export default { en, ru, uk };
+export default { en, uk, pl };

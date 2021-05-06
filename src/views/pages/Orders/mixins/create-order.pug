@@ -25,9 +25,9 @@ v-dialog(v-model="createDialog" persistent max-width="600px")
                         v-model="order.phone"
                         :label="$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.phone`)"
                         :error-messages="getValidateMessage('Orders', 'order.phone', 'createOrder.phone')"
-                        v-mask="'+380-###-###-###'"
-                        hint="+380123456789"
-                        placeholder="+380"
+                        v-mask="'+48-###-###-###'"
+                        hint="+48123456789"
+                        placeholder="+48"
                         prepend-icon="mdi-cellphone"
                         outlined
                     )
@@ -67,7 +67,7 @@ v-dialog(v-model="createDialog" persistent max-width="600px")
                     )
                     v-divider
                 .add-order-wrapper(:class="{'justify-right': !totalPrice}")
-                    span(v-show="totalPrice").add-order-wrapper__total-price {{$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.totalPrice`)}}: {{totalPrice}} &#8372
+                    span.add-order-wrapper__total-price(v-show="totalPrice") {{$vuetify.lang.t(`$vuetify.pages.Orders.createOrder.totalPrice`)}}: {{totalPrice}} &#8372
                     .add-order-wrapper__actions
                         v-btn(
                             v-if="pizzasCount > 1"
@@ -78,14 +78,6 @@ v-dialog(v-model="createDialog" persistent max-width="600px")
                             icon
                         )
                             v-icon mdi-minus
-                        v-btn.add-order-btn(
-                            @click="pizzasCount++"
-                            color="primary"
-                            outlined
-                            rounded
-                        )
-                            v-icon mdi-plus
-                            span {{$vuetify.lang.t(`$vuetify.buttons.add`)}}
 
             v-card-actions
                 v-btn.cancel-button(color="red" @click="closeCreateDialog()").white--text {{$vuetify.lang.t(`$vuetify.buttons.cancel`)}}

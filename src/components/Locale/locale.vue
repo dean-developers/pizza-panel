@@ -14,6 +14,11 @@
     background-size: cover;
 }
 
+.pl {
+  background: url(../../../public/img/locales/pl.png) no-repeat center;
+  background-size: cover;
+}
+
 .v-list {
     background: none !important;
 }

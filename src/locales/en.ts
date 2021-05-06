@@ -51,7 +51,7 @@ export default {
         },
         Menu: {
             name: {
-                required: 'Fill a pizza name',
+                required: 'Fill a donut name',
             },
             ingredients: {
                 required: 'Choose an ingredients'
@@ -90,7 +90,7 @@ export default {
                 houseNumber: 'House number',
                 clientDetails: 'Client details',
                 orderDetails: 'Order details',
-                choosePizza: 'Choose pizza',
+                chooseDonut: 'Choose donut',
                 additionalIngredients: 'Additional ingredients',
                 totalPrice: 'Total price'
             },
@@ -103,7 +103,7 @@ export default {
                 states: {
                     processing: 'In process'
                 },
-                pizza: 'Pizza',
+                pizza: 'Donut',
                 price: 'Price',
                 additional: 'Additional'
             },
@@ -138,8 +138,8 @@ export default {
         menu: 'Menu',
         users: 'Users',
         settings: 'Settings',
-        edit: 'Edit pizza',
-        create: 'New pizza',
+        edit: 'Edit donut',
+        create: 'New donut',
         logout: 'Log out',
         404: 'Page not found'
     },
@@ -148,15 +148,15 @@ export default {
         error: {
             noSuchUser: 'Not authorized',
             incorrectLoginOrPassword: 'Email or password incorrect',
-            pizzaDeleted: 'Pizza was deleted from menu',
+            pizzaDeleted: 'Donut was deleted from menu',
             orderDeleted: 'Order was deleted from history'
         },
         success: {
             login: 'Success login',
             online: 'Status: online',
             created: 'Order successfully created',
-            newPizza: 'Pizza was successfully added',
-            pizzaUpdated: 'Pizza was successfully updated'
+            newPizza: 'Donut was successfully added',
+            pizzaUpdated: 'Donut was successfully updated'
         }
     }
 };

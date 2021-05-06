@@ -2,7 +2,7 @@ main.auth
     .v-container
         .auth-wrapper
             v-card.elevation-12.login
-                v-toolbar(color="blue darken-1")
+                v-toolbar(color="primary")
                     v-toolbar-title {{$vuetify.lang.t(`$vuetify.pages.Auth.form.title`)}}
                 v-card-text
                     v-form(@submit.prevent="submit()")

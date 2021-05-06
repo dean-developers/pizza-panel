@@ -1,7 +1,7 @@
 export default {
     locales: {
         en: 'Англійска',
-        ru: 'Російська',
+        pl: 'Польська',
         uk: 'Українська'
     },
     roles: {
@@ -51,7 +51,7 @@ export default {
         },
         Menu: {
             name: {
-                required: 'Введіть назву піцци'
+                required: 'Введіть назву донута'
             },
             ingredients: {
                 required: 'Оберіть інгрідієнти'
@@ -90,7 +90,7 @@ export default {
                 houseNumber: 'Номер будинку',
                 clientDetails: 'Інформація про клієнта',
                 orderDetails: 'Деталі замовлення',
-                choosePizza: 'Оберіть піццу',
+                choosePizza: 'Оберіть донут',
                 additionalIngredients: 'Додаткові інгрідієнти',
                 totalPrice: 'Загальна ціна'
             },
@@ -103,7 +103,7 @@ export default {
                 states: {
                     processing: 'В процесі'
                 },
-                pizza: 'Піцца',
+                pizza: 'Донут',
                 price: 'Вартість',
                 additional: 'Додатково'
             },
@@ -137,8 +137,8 @@ export default {
         menu: 'Меню',
         users: 'Користувачі',
         settings: 'Налаштування',
-        edit: 'Редагування піцци',
-        create: 'Нова піцца',
+        edit: 'Редагування донутів',
+        create: 'Новий донут',
         logout: 'Вийти',
         404: 'Сторінку не знайдено'
     },
@@ -153,8 +153,8 @@ export default {
             login: 'Успішний вхід',
             online: 'Статус: онлайн',
             created: 'Замовлення успішно створено',
-            newPizza: 'Піццу успішно додано',
-            pizzaUpdated: 'Піццу успішно оновлено'
+            newPizza: 'Донут успішно додано',
+            pizzaUpdated: 'Донут успішно оновлено'
         }
     }
 };

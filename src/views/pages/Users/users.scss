@@ -5,3 +5,7 @@
   margin: auto;
   margin-bottom: 40px;
 }
+
+::v-deep .v-data-table-header {
+  background: #D81B60;
+}

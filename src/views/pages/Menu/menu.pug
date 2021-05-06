@@ -17,10 +17,10 @@
                     ) {{$vuetify.lang.t(`$vuetify.buttons.delete`)}}
     .pizzas-wrap
         v-card.pizza-card(v-for="(item, index) in pizzas" :key="item.id")
-            v-img(src="/img/lorem-image.png")
+            v-img(src="/img/donuts.jpg")
             v-card-title.main-title
                 span.name {{ item.name }}
-                span.price {{ item.price }} &#8372
+                span.price {{ item.price }} z&#322
             v-divider
             v-card-title {{$vuetify.lang.t(`$vuetify.pages.Menu.ingredients`)}}
             v-card-text
